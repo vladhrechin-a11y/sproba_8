@@ -1,0 +1,5375 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0">
+
+<title>Підтримка Поруч</title>
+
+<style>
+
+* {
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root {
+
+  --navy:#071b2f;
+  --navy-2:#0b2944;
+  --blue:#123b61;
+
+  --yellow:#ffd500;
+  --yellow-dark:#d9b500;
+
+  --white:#fff;
+  --bg:#eef2f5;
+
+  --text:#17212b;
+  --muted:#687680;
+
+  --border:#d9e1e7;
+
+  --danger:#b71c1c;
+  --danger-bg:#fff1f1;
+
+  --shadow:
+  0 6px 20px rgba(7,27,47,.10);
+
+  --shadow-hover:
+  0 12px 28px rgba(7,27,47,.18);
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
+body {
+
+  margin:0;
+  min-height:100vh;
+
+  font-family:
+  Arial,
+  Helvetica,
+  sans-serif;
+
+  color:var(--text);
+
+  background:
+  linear-gradient(
+    180deg,
+    #e9eef2 0%,
+    #f7f8fa 100%
+  );
+}
+
+button {
+  font-family:inherit;
+}
+
+
+/* =====================================================
+   ВЕРХНЯ СМУГА
+   ===================================================== */
+
+.top-line {
+
+  width:100%;
+  height:6px;
+
+  background:
+  linear-gradient(
+    to right,
+    var(--yellow) 0%,
+    var(--yellow) 50%,
+    var(--navy) 50%,
+    var(--navy) 100%
+  );
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+header {
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+    135deg,
+    #06182a 0%,
+    #0b2944 60%,
+    #123b61 100%
+  );
+
+  color:white;
+
+  padding:
+  22px 18px 24px;
+
+  box-shadow:
+  0 4px 18px
+  rgba(0,0,0,.22);
+}
+
+header::after {
+
+  content:"";
+
+  position:absolute;
+
+  right:-80px;
+  top:-100px;
+
+  width:260px;
+  height:260px;
+
+  border:
+  1px solid
+  rgba(255,255,255,.08);
+
+  transform:rotate(45deg);
+
+  animation:
+  headerShape
+  8s
+  ease-in-out
+  infinite;
+}
+
+@keyframes headerShape {
+
+  0% {
+    transform:
+    rotate(45deg)
+    scale(1);
+  }
+
+  50% {
+    transform:
+    rotate(55deg)
+    scale(1.08);
+  }
+
+  100% {
+    transform:
+    rotate(45deg)
+    scale(1);
+  }
+}
+
+.header-inner {
+
+  position:relative;
+  z-index:2;
+
+  max-width:1000px;
+
+  margin:auto;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+  justify-content:center;
+}
+
+.police-logo {
+
+  width:78px;
+  height:78px;
+
+  object-fit:contain;
+
+  flex-shrink:0;
+
+  filter:
+  drop-shadow(
+    0 3px 5px
+    rgba(0,0,0,.30)
+  );
+
+  animation:
+  logoAppear
+  .8s
+  ease-out;
+}
+
+
+@keyframes logoAppear {
+
+  from {
+    opacity:0;
+    transform:
+    scale(.65)
+    rotate(-12deg);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    scale(1)
+    rotate(0);
+  }
+}
+
+.header-content {
+  flex:1;
+  text-align:center;
+}
+
+
+.header-title {
+
+  margin:0;
+
+  font-size:28px;
+
+  font-weight:800;
+
+  animation:
+  titleAppear
+  .8s
+  ease-out;
+}
+
+@keyframes titleAppear {
+
+  from {
+    opacity:0;
+    transform:
+    translateX(-20px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    translateX(0);
+  }
+}
+
+.header-subtitle {
+
+  margin-top:6px;
+
+  color:
+  rgba(255,255,255,.72);
+
+  font-size:12px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+}
+
+.yellow-line {
+
+  width:58px;
+  height:4px;
+
+  margin-top:10px;
+  margin-left:auto;
+  margin-right:auto;
+
+  border-radius:3px;
+
+  background:
+  var(--yellow);
+
+  animation:
+  yellowLineAppear
+  1s
+  ease-out;
+}
+
+@keyframes yellowLineAppear {
+
+  from {
+    width:0;
+    opacity:0;
+  }
+
+  to {
+    width:58px;
+    opacity:1;
+  }
+}
+
+
+/* =====================================================
+   CONTAINER
+   ===================================================== */
+
+.container {
+
+  width:100%;
+  max-width:1000px;
+
+  margin:auto;
+
+  padding:
+  28px 18px 45px;
+}
+
+
+/* =====================================================
+   PAGE HEADING
+   ===================================================== */
+
+.page-heading {
+  margin-bottom:20px;
+}
+
+.page-heading-label {
+
+  margin-bottom:6px;
+
+  color:var(--blue);
+
+  font-size:11px;
+
+  font-weight:800;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+}
+
+.page-heading h2 {
+
+  margin:0;
+
+  color:var(--navy);
+
+  font-size:27px;
+
+  font-weight:800;
+}
+
+.page-heading p {
+
+  margin:
+  8px 0 0;
+
+  color:var(--muted);
+
+  font-size:15px;
+
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   ALERT
+   ===================================================== */
+
+.safety-alert {
+
+  margin-bottom:22px;
+
+  padding:20px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #fffde9 0%,
+    #fff7c4 100%
+  );
+
+  border:
+  1px solid
+  #eed45b;
+
+  border-left:
+  7px solid
+  var(--yellow-dark);
+
+  border-radius:5px;
+
+  box-shadow:
+  0 6px 18px
+  rgba(130,104,0,.08);
+
+  animation:
+  alertAppear
+  .7s
+  ease-out;
+}
+
+@keyframes alertAppear {
+
+  from {
+    opacity:0;
+    transform:
+    translateY(12px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    translateY(0);
+  }
+}
+
+.safety-alert-title {
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:8px;
+
+  color:var(--navy);
+
+  font-size:17px;
+
+  font-weight:900;
+}
+
+.safety-alert-icon {
+
+  width:31px;
+  height:31px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+  var(--yellow);
+
+  color:
+  var(--navy);
+
+  font-size:18px;
+
+  font-weight:900;
+
+  animation:
+  warningPulse
+  2s infinite;
+}
+
+@keyframes warningPulse {
+
+  0%,100% {
+    transform:scale(1);
+  }
+
+  50% {
+    transform:scale(1.08);
+  }
+}
+
+.safety-alert-text {
+
+  color:#29343d;
+
+  font-size:15px;
+
+  line-height:1.55;
+
+  font-weight:600;
+}
+
+
+/* =====================================================
+   КАРТКИ
+   ===================================================== */
+
+#sections,
+#categories {
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(
+    auto-fit,
+    minmax(250px,1fr)
+  );
+
+  gap:17px;
+}
+
+.section-card,
+.category-card {
+
+  position:relative;
+
+  width:100%;
+
+  min-height:150px;
+
+  padding:22px;
+
+  overflow:hidden;
+
+  border:
+  1px solid
+  var(--border);
+
+  border-left:
+  5px solid
+  var(--yellow);
+
+  border-radius:5px;
+
+  background:white;
+
+  text-align:left;
+
+  cursor:pointer;
+
+  box-shadow:
+  var(--shadow);
+
+  transition:
+  transform .18s ease,
+  box-shadow .18s ease;
+
+  animation:
+  cardAppear
+  .5s
+  ease-out;
+}
+
+.section-card:hover,
+.category-card:hover {
+
+  transform:
+  translateY(-4px);
+
+  box-shadow:
+  var(--shadow-hover);
+}
+
+@keyframes cardAppear {
+
+  from {
+    opacity:0;
+    transform:
+    translateY(15px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    translateY(0);
+  }
+}
+
+.section-icon,
+.category-icon {
+
+  width:48px;
+  height:48px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:14px;
+
+  border-radius:5px;
+
+  background:
+  var(--navy);
+
+  color:
+  var(--yellow);
+
+  font-size:25px;
+}
+
+.category-icon {
+
+  width:60px;
+  height:60px;
+
+  font-size:31px;
+}
+
+.section-name,
+.category-name {
+
+  margin-bottom:7px;
+
+  color:var(--navy);
+
+  font-size:19px;
+
+  line-height:1.25;
+
+  font-weight:800;
+}
+
+.category-name {
+  font-size:21px;
+}
+
+.section-description,
+.category-description {
+
+  color:var(--muted);
+
+  font-size:14px;
+
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   CONTENT
+   ===================================================== */
+
+#content {
+  margin-top:0;
+}
+
+.back-button {
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:8px;
+
+  border:none;
+
+  border-radius:4px;
+
+  padding:
+  12px 17px;
+
+  margin-bottom:18px;
+
+  background:
+  var(--navy);
+
+  color:white;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+.back-button:hover {
+  background:var(--blue);
+}
+
+.selected-section-title {
+
+  margin-bottom:20px;
+
+  padding:20px;
+
+  border:
+  1px solid
+  var(--border);
+
+  border-left:
+  6px solid
+  var(--yellow);
+
+  border-radius:5px;
+
+  background:white;
+
+  box-shadow:
+  var(--shadow);
+
+  animation:
+  contentAppear
+  .45s
+  ease-out;
+}
+
+@keyframes contentAppear {
+
+  from {
+    opacity:0;
+    transform:
+    translateY(12px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    translateY(0);
+  }
+}
+
+.selected-section-icon {
+
+  font-size:34px;
+
+  margin-bottom:8px;
+}
+
+.selected-section-name {
+
+  color:var(--navy);
+
+  font-size:26px;
+
+  font-weight:800;
+}
+
+
+/* =====================================================
+   КРОКИ
+   ===================================================== */
+
+.step-block {
+
+  margin-bottom:14px;
+
+  border:
+  1px solid
+  var(--border);
+
+  border-radius:5px;
+
+  background:white;
+
+  box-shadow:
+  var(--shadow);
+
+  overflow:hidden;
+
+  animation:
+  stepAppear
+  .45s
+  ease-out;
+}
+
+@keyframes stepAppear {
+
+  from {
+    opacity:0;
+    transform:
+    translateY(10px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    translateY(0);
+  }
+}
+
+.step-header {
+
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:
+  18px 20px;
+
+  border:none;
+
+  background:
+  var(--navy);
+
+  color:white;
+
+  text-align:left;
+
+  cursor:pointer;
+}
+
+.step-header:hover {
+  background:var(--blue);
+}
+
+.step-header-left {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  min-width:0;
+
+  flex:1;
+}
+
+.step-number {
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-shrink:0;
+
+  min-width:82px;
+
+  min-height:38px;
+
+  padding:
+  6px 10px;
+
+  border-radius:3px;
+
+  background:
+  var(--yellow);
+
+  color:
+  var(--navy);
+
+  font-size:13px;
+
+  font-weight:900;
+
+  line-height:1.2;
+
+  white-space:normal;
+
+  text-align:center;
+}
+
+.step-title {
+
+  font-size:18px;
+
+  line-height:1.35;
+
+  font-weight:800;
+
+  word-break:break-word;
+}
+
+.step-arrow {
+
+  flex-shrink:0;
+
+  font-size:20px;
+
+  transition:
+  transform .2s ease;
+}
+
+.step-block.open
+.step-arrow {
+
+  transform:
+  rotate(180deg);
+}
+
+.step-content {
+
+  display:none;
+
+  padding:
+  8px 12px 12px;
+}
+
+.step-block.open
+.step-content {
+
+  display:block;
+
+  animation:
+  subpointsAppear
+  .25s ease-out;
+}
+
+@keyframes subpointsAppear {
+
+  from {
+    opacity:0;
+    transform:
+    translateY(-5px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+    translateY(0);
+  }
+}
+
+.subpoint-card {
+
+  margin:
+  8px 0;
+
+  padding:20px;
+
+  border:
+  1px solid
+  var(--border);
+
+  border-left:
+  5px solid
+  var(--yellow);
+
+  border-radius:4px;
+
+  background:white;
+
+  box-shadow:
+  0 3px 12px
+  rgba(7,27,47,.07);
+}
+
+.subpoint-number {
+
+  display:inline-flex;
+
+  align-items:center;
+
+  min-height:26px;
+
+  padding:
+  4px 9px;
+
+  margin-bottom:10px;
+
+  border-radius:3px;
+
+  background:#edf1f4;
+
+  color:var(--navy);
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+.subpoint-title {
+
+  margin-bottom:12px;
+
+  color:var(--navy);
+
+  font-size:21px;
+
+  line-height:1.3;
+
+  font-weight:800;
+}
+
+.subpoint-text {
+
+  color:#29343d;
+
+  font-size:16px;
+
+  line-height:1.65;
+
+  white-space:pre-line;
+}
+
+
+/* =====================================================
+   PHOTO
+   ===================================================== */
+
+.photo-container {
+
+  width:100%;
+
+  margin-top:20px;
+
+  padding-top:18px;
+
+  border-top:
+  1px solid
+  var(--border);
+
+  text-align:center;
+}
+
+.photo-container img {
+
+  display:block;
+
+  width:100%;
+
+  max-width:760px;
+
+  max-height:620px;
+
+  margin:auto;
+
+  object-fit:contain;
+
+  border-radius:4px;
+
+  box-shadow:
+  0 8px 24px
+  rgba(7,27,47,.18);
+}
+
+
+/* =====================================================
+   VIDEO
+   ===================================================== */
+
+.video-container {
+
+  width:100%;
+
+  margin-top:20px;
+
+  padding-top:18px;
+
+  border-top:
+  1px solid
+  var(--border);
+}
+
+.video-title {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  margin-bottom:12px;
+
+  color:var(--navy);
+
+  font-size:15px;
+
+  font-weight:900;
+}
+
+.video-wrapper {
+
+  position:relative;
+
+  width:100%;
+
+  max-width:800px;
+
+  margin:auto;
+
+  overflow:hidden;
+
+  border-radius:6px;
+
+  background:#000;
+
+  box-shadow:
+  0 8px 24px
+  rgba(7,27,47,.20);
+
+  aspect-ratio:16/9;
+}
+
+.video-wrapper iframe {
+
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  border:0;
+}
+
+
+/* =====================================================
+   ПОВІДОМЛЕННЯ
+   ===================================================== */
+
+.message {
+
+  width:100%;
+
+  padding:
+  28px 22px;
+
+  border:
+  1px solid
+  var(--border);
+
+  border-radius:5px;
+
+  background:white;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  line-height:1.55;
+
+  box-shadow:
+  var(--shadow);
+}
+
+.message-icon {
+
+  margin-bottom:10px;
+
+  font-size:32px;
+}
+
+.error {
+
+  border:
+  1px solid
+  #efb5b5;
+
+  border-left:
+  6px solid
+  var(--danger);
+
+  background:
+  var(--danger-bg);
+
+  color:
+  var(--danger);
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.loading {
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:8px;
+}
+
+.loading-dot {
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:
+  var(--yellow-dark);
+
+  animation:
+  loading
+  1s infinite
+  ease-in-out;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay:.15s;
+}
+
+.loading-dot:nth-child(3) {
+  animation-delay:.30s;
+}
+
+@keyframes loading {
+
+  0%,80%,100% {
+    transform:scale(.65);
+    opacity:.45;
+  }
+
+  40% {
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+
+  margin-top:35px;
+
+  padding-top:18px;
+
+  border-top:
+  1px solid
+  var(--border);
+
+  color:#7b8790;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:1px;
+
+  text-align:center;
+
+  text-transform:uppercase;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media(max-width:650px) {
+
+  header {
+    padding:
+    17px 14px 19px;
+  }
+
+  .header-inner {
+    gap:12px;
+  }
+
+  .police-logo {
+    width:52px;
+    height:52px;
+  }
+
+  .header-title {
+    font-size:22px;
+  }
+
+  .container {
+    padding:
+    20px 12px 35px;
+  }
+
+  .page-heading h2 {
+    font-size:23px;
+  }
+
+  #sections,
+  #categories {
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .section-card,
+  .category-card {
+    min-height:125px;
+    padding:18px;
+  }
+
+  .safety-alert {
+    padding:17px;
+    margin-bottom:17px;
+  }
+
+  .selected-section-title {
+    padding:17px;
+  }
+
+  .selected-section-name {
+    font-size:22px;
+  }
+
+  .step-header {
+    padding:
+    15px 14px;
+
+    align-items:flex-start;
+  }
+
+  .step-header-left {
+    align-items:flex-start;
+    gap:9px;
+  }
+
+  .step-title {
+    font-size:15px;
+  }
+
+  .step-number {
+    min-width:70px;
+    min-height:31px;
+    padding:5px 7px;
+    font-size:11px;
+  }
+
+  .step-content {
+    padding:
+    5px 7px 8px;
+  }
+
+  .subpoint-card {
+    padding:17px;
+  }
+
+  .subpoint-title {
+    font-size:19px;
+  }
+
+  .subpoint-text {
+    font-size:15px;
+  }
+
+  .back-button {
+    width:100%;
+  }
+}
+
+
+/* =====================================================
+   ПЕРЕГЛЯД ФОТО НА ВЕСЬ ЕКРАН
+   Працює тільки для фото методички
+   ===================================================== */
+
+.photo-container img {
+  cursor:zoom-in;
+  touch-action:pan-y;
+}
+
+.photo-lightbox {
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(0,0,0,.88);
+  overscroll-behavior:contain;
+}
+
+.photo-lightbox.open {
+  display:flex;
+}
+
+.photo-lightbox-image {
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  border-radius:6px;
+  box-shadow:0 10px 40px rgba(0,0,0,.45);
+  transform-origin:center center;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
+  touch-action:none;
+}
+
+.photo-lightbox-image.dragging {
+  cursor:grabbing;
+}
+
+.photo-lightbox-close {
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:46px;
+  height:46px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.16);
+  color:#fff;
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
+  z-index:2;
+}
+
+.photo-lightbox-close:hover {
+  background:rgba(255,255,255,.28);
+}
+
+.photo-lightbox-hint {
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  color:rgba(255,255,255,.78);
+  font-size:13px;
+  text-align:center;
+  pointer-events:none;
+}
+
+body.photo-lightbox-open {
+  overflow:hidden;
+}
+
+@media (max-width:600px) {
+  .photo-lightbox {
+    padding:10px;
+  }
+
+  .photo-lightbox-close {
+    top:10px;
+    right:10px;
+    width:42px;
+    height:42px;
+    font-size:27px;
+  }
+
+  .photo-lightbox-hint {
+    bottom:10px;
+    font-size:12px;
+  }
+}
+
+
+/* =====================================================
+   ПОШУК ПО ВСІЙ МЕТОДИЧЦІ
+   ===================================================== */
+
+.search-panel {
+  margin-bottom:20px;
+  padding:16px;
+  background:white;
+  border:1px solid var(--border);
+  border-left:5px solid var(--yellow);
+  border-radius:5px;
+  box-shadow:var(--shadow);
+}
+
+.search-row {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.search-input-wrap {
+  position:relative;
+  flex:1;
+}
+
+.search-input {
+  width:100%;
+  min-height:46px;
+  padding:12px 42px 12px 42px;
+  border:1px solid var(--border);
+  border-radius:5px;
+  outline:none;
+  color:var(--text);
+  background:#fff;
+  font-size:16px;
+}
+
+.search-input:focus {
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(18,59,97,.10);
+}
+
+.search-icon {
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+  pointer-events:none;
+}
+
+.search-clear {
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  width:32px;
+  height:32px;
+  border:0;
+  border-radius:50%;
+  background:#edf1f4;
+  color:var(--navy);
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+  display:none;
+}
+
+.search-clear.show {
+  display:block;
+}
+
+.search-status {
+  margin-top:9px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.4;
+}
+
+.search-results {
+  margin-top:14px;
+  display:grid;
+  gap:9px;
+}
+
+.search-result {
+  width:100%;
+  padding:14px 15px;
+  border:1px solid var(--border);
+  border-left:4px solid var(--yellow);
+  border-radius:4px;
+  background:#fff;
+  text-align:left;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(7,27,47,.06);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+
+.search-result:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow);
+}
+
+.search-result-title {
+  color:var(--navy);
+  font-size:16px;
+  font-weight:800;
+  line-height:1.35;
+}
+
+.search-result-path {
+  margin-top:4px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.search-result-snippet {
+  margin-top:7px;
+  color:#3c4851;
+  font-size:13px;
+  line-height:1.45;
+}
+
+.search-result mark {
+  padding:0 2px;
+  border-radius:2px;
+  background:#fff0a3;
+  color:inherit;
+}
+
+.search-empty {
+  padding:16px;
+  border:1px dashed var(--border);
+  border-radius:4px;
+  color:var(--muted);
+  text-align:center;
+  background:#f9fafb;
+}
+
+.breadcrumb {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:5px;
+  margin-bottom:16px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.4;
+}
+
+.breadcrumb button {
+  padding:0;
+  border:0;
+  background:none;
+  color:var(--blue);
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.breadcrumb button:hover {
+  text-decoration:underline;
+}
+
+.breadcrumb-separator {
+  color:#9aa5ad;
+}
+
+.breadcrumb-current {
+  color:var(--navy);
+  font-weight:700;
+}
+
+@media(max-width:650px) {
+  .search-panel {
+    padding:12px;
+  }
+
+  .search-input {
+    min-height:44px;
+    font-size:16px;
+  }
+
+  .search-status {
+    font-size:12px;
+  }
+
+  .breadcrumb {
+    font-size:12px;
+    margin-bottom:12px;
+  }
+
+  .breadcrumb button,
+  .breadcrumb-current {
+    font-size:12px;
+  }
+}
+
+
+/* =====================================================
+   ІНТЕРАКТИВНИЙ ЧЕК-ЛИСТ
+   ===================================================== */
+.checklist-box{
+  margin:0 0 20px;
+  padding:20px;
+  border:1px solid var(--border);
+  border-left:6px solid var(--yellow);
+  border-radius:5px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.checklist-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:14px;
+}
+.checklist-title{
+  margin:0;
+  color:var(--navy);
+  font-size:19px;
+  font-weight:900;
+}
+.checklist-note{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+.checklist-reset{
+  flex-shrink:0;
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:8px 10px;
+  background:#f5f7f9;
+  color:var(--navy);
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+.checklist-reset:hover{background:#e9eef2}
+.checklist-progress-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:14px 0 8px;
+  color:var(--navy);
+  font-size:13px;
+  font-weight:900;
+}
+.checklist-progress-track{
+  width:100%;
+  height:9px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e8edf1;
+}
+.checklist-progress-bar{
+  width:0%;
+  height:100%;
+  border-radius:999px;
+  background:var(--yellow);
+  transition:width .2s ease;
+}
+.checklist-items{display:grid;gap:8px;margin-top:14px}
+.checklist-item{
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:#fff;
+  cursor:pointer;
+  text-align:left;
+  transition:background .15s ease,border-color .15s ease,transform .15s ease;
+}
+.checklist-item:hover{background:#f8fafb;transform:translateY(-1px)}
+.checklist-item.done{background:#f4f8f5;border-color:#c8d8cd}
+.checklist-check{
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #aab6bf;
+  border-radius:4px;
+  background:#fff;
+  color:var(--navy);
+  font-size:14px;
+  font-weight:900;
+  line-height:1;
+}
+.checklist-item.done .checklist-check{background:var(--yellow);border-color:var(--yellow-dark)}
+.checklist-item-text{color:var(--text);font-size:14px;line-height:1.45;font-weight:700}
+.checklist-item.done .checklist-item-text{text-decoration:line-through;text-decoration-thickness:1px;opacity:.72}
+.checklist-success{
+  display:none;
+  margin-top:14px;
+  padding:12px 14px;
+  border:1px solid #c8d8cd;
+  border-radius:4px;
+  background:#f4f8f5;
+  color:#214b2d;
+  font-size:14px;
+  line-height:1.45;
+  font-weight:800;
+}
+.checklist-success.show{display:block}
+.checklist-next{
+  display:none;
+  margin-top:10px;
+  border:none;
+  border-radius:4px;
+  padding:11px 14px;
+  background:var(--navy);
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+.checklist-next.show{display:inline-flex}
+@media(max-width:600px){
+  .checklist-head{display:block}
+  .checklist-reset{margin-top:10px}
+  .checklist-item{padding:12px}
+}
+
+
+/* =====================================================
+   ЗВОРОТНИЙ ЗВ'ЯЗОК
+   ===================================================== */
+
+.feedback-card{
+  width:100%;
+  margin-top:17px;
+  padding:18px 20px;
+  border:1px solid var(--border);
+  border-left:5px solid var(--yellow);
+  border-radius:5px;
+  background:#fff;
+  box-shadow:var(--shadow);
+  text-align:left;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.feedback-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-hover);
+}
+.feedback-card:active{transform:translateY(0)}
+.feedback-icon{
+  width:48px;
+  height:48px;
+  flex:0 0 48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:5px;
+  background:var(--navy);
+  color:var(--yellow);
+  font-size:25px;
+}
+.feedback-card-title{
+  margin:0 0 4px;
+  color:var(--navy);
+  font-size:19px;
+  line-height:1.25;
+  font-weight:800;
+}
+.feedback-card-text{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.45;
+}
+.feedback-arrow{
+  margin-left:auto;
+  color:var(--navy);
+  font-size:25px;
+  font-weight:700;
+}
+
+.feedback-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(7,27,47,.62);
+}
+.feedback-overlay.open{display:flex}
+.feedback-modal{
+  width:100%;
+  max-width:520px;
+  max-height:90vh;
+  overflow:auto;
+  padding:22px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:#fff;
+  box-shadow:0 18px 50px rgba(0,0,0,.30);
+}
+.feedback-modal-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:6px;
+}
+.feedback-modal-title{
+  margin:0;
+  color:var(--navy);
+  font-size:23px;
+  font-weight:900;
+}
+.feedback-close{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:#f5f7f9;
+  color:var(--navy);
+  font-size:22px;
+  cursor:pointer;
+}
+.feedback-modal-intro{
+  margin:0 0 16px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+.feedback-options{display:grid;gap:9px}
+.feedback-option{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px;
+  border:1px solid var(--border);
+  border-left:4px solid var(--yellow);
+  border-radius:5px;
+  background:#fff;
+  color:var(--text);
+  text-align:left;
+  cursor:pointer;
+  transition:background .15s ease,transform .15s ease;
+}
+.feedback-option:hover{background:#f8fafb;transform:translateY(-1px)}
+.feedback-option-icon{
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:5px;
+  background:var(--navy);
+  font-size:23px;
+}
+.feedback-option-title{
+  display:block;
+  margin-bottom:3px;
+  color:var(--navy);
+  font-size:15px;
+  font-weight:900;
+}
+.feedback-option-text{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
+.feedback-option-arrow{
+  margin-left:auto;
+  color:var(--navy);
+  font-size:21px;
+}
+.feedback-note{
+  margin-top:14px;
+  padding:12px 13px;
+  border:1px solid #eed45b;
+  border-left:4px solid var(--yellow-dark);
+  border-radius:5px;
+  background:#fffde9;
+  color:#29343d;
+  font-size:12px;
+  line-height:1.45;
+}
+@media(max-width:600px){
+  .feedback-modal{padding:18px}
+  .feedback-modal-title{font-size:21px}
+}
+
+
+/* =====================================================
+   ФІНАЛЬНИЙ ВІЗУАЛЬНИЙ СТИЛЬ — ПІДТРИМКА ПОРУЧ
+   Зберігаємо всю логіку та функції застосунку.
+   ===================================================== */
+
+:root {
+  --bg:#f4f6f8;
+  --text:#17212b;
+  --muted:#687680;
+  --border:#dfe5ea;
+  --shadow:0 4px 14px rgba(7,27,47,.08);
+  --shadow-hover:0 9px 24px rgba(7,27,47,.14);
+}
+
+body {
+  background:#f4f6f8;
+  color:var(--text);
+}
+
+.top-line { height:5px; }
+
+header {
+  padding:22px 16px 24px;
+  background:linear-gradient(135deg,#06182a 0%,#0b2944 68%,#123b61 100%);
+  box-shadow:0 3px 14px rgba(7,27,47,.18);
+}
+
+.header-inner {
+  max-width:1000px;
+  gap:0;
+}
+
+.header-content {
+  width:100%;
+}
+
+.header-title {
+  font-size:28px;
+  line-height:1.15;
+}
+
+.header-subtitle {
+  margin-top:8px;
+  font-size:12px;
+  letter-spacing:1.2px;
+}
+
+.yellow-line {
+  width:58px;
+  height:4px;
+  margin-top:11px;
+}
+
+.container {
+  max-width:1000px;
+  padding:20px 14px 42px;
+}
+
+.search-panel {
+  margin-bottom:18px;
+  padding:10px 12px 12px;
+  background:#fff;
+  border:1px solid #e2e7eb;
+  border-left:4px solid var(--yellow);
+  border-radius:8px;
+  box-shadow:var(--shadow);
+}
+
+.search-input-wrap {
+  min-height:48px;
+  border:1px solid #dce3e8;
+  border-radius:7px;
+  background:#fff;
+}
+
+.search-input {
+  color:#17212b;
+  background:#fff;
+}
+
+.search-input::placeholder { color:#7b8790; }
+
+.search-status {
+  padding:7px 2px 1px;
+  color:#687680;
+  font-size:14px;
+}
+
+.page-heading { margin-bottom:18px; }
+.page-heading-label {
+  margin-bottom:5px;
+  font-size:11px;
+  letter-spacing:1.5px;
+}
+.page-heading h2 { font-size:27px; }
+.page-heading p { margin-top:7px; }
+
+.safety-alert {
+  margin-bottom:18px;
+  padding:17px 18px;
+  border-radius:8px;
+}
+
+#sections, #categories {
+  gap:12px;
+}
+
+.section-card, .category-card {
+  min-height:138px;
+  padding:18px;
+  border:1px solid #e0e5e9;
+  border-left:5px solid var(--yellow);
+  border-radius:8px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+
+.section-card:hover, .category-card:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-hover);
+}
+
+.section-icon, .category-icon {
+  width:48px;
+  height:48px;
+  margin-bottom:11px;
+  border-radius:7px;
+  background:#071b2f;
+}
+
+.category-icon { width:56px; height:56px; font-size:29px; }
+.section-name, .category-name { font-size:18px; }
+.category-name { font-size:20px; }
+.section-description, .category-description { font-size:14px; }
+
+.back-button {
+  border-radius:7px;
+  padding:11px 16px;
+  margin-bottom:16px;
+}
+
+.selected-section-title {
+  margin-bottom:16px;
+  padding:18px;
+  border-radius:8px;
+}
+
+.step-block {
+  margin-bottom:11px;
+  border-radius:8px;
+  box-shadow:var(--shadow);
+}
+
+.step-header {
+  padding:15px 16px;
+  background:#071b2f;
+}
+
+.step-header:hover { background:#0b2944; }
+
+.step-number {
+  min-width:76px;
+  min-height:36px;
+  border-radius:5px;
+}
+
+.step-title { font-size:17px; }
+
+.step-content { padding:7px 9px 9px; background:#f8fafb; }
+
+.subpoint-card {
+  margin:7px 0;
+  padding:17px;
+  border:1px solid #e1e6ea;
+  border-left:4px solid var(--yellow);
+  border-radius:7px;
+  background:#fff;
+  box-shadow:0 2px 9px rgba(7,27,47,.055);
+}
+
+.subpoint-number {
+  border-radius:5px;
+  background:#edf1f4;
+}
+
+.selected-section-name { font-size:24px; }
+
+.feedback-card {
+  margin-top:12px;
+  padding:15px 16px;
+  border:1px solid #e1e6ea;
+  border-left:5px solid var(--yellow);
+  border-radius:8px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+
+.feedback-card:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-hover);
+}
+
+.feedback-modal {
+  background:#fff;
+  border:1px solid #e0e5e9;
+  border-radius:12px;
+}
+
+.feedback-option {
+  background:#fff;
+  border:1px solid #e0e5e9;
+  border-left:4px solid var(--yellow);
+  border-radius:8px;
+}
+
+.feedback-option:hover { background:#f8fafb; }
+
+.feedback-note {
+  background:#fff9df;
+  border:1px solid #ead66b;
+  border-radius:8px;
+}
+
+.footer {
+  color:#7a8790;
+  border-color:#dfe5ea;
+}
+
+.search-result {
+  background:#fff;
+  border:1px solid #e0e5e9;
+  border-left:4px solid var(--yellow);
+  border-radius:7px;
+  box-shadow:0 2px 8px rgba(7,27,47,.05);
+}
+
+.search-empty {
+  background:#fff;
+  border:1px solid #e0e5e9;
+  border-radius:8px;
+}
+
+.message {
+  background:#fff;
+  border:1px solid #e0e5e9;
+  border-radius:8px;
+}
+
+@media(max-width:650px) {
+  .container { padding-left:12px; padding-right:12px; }
+  .header-title { font-size:24px; }
+  .header-subtitle { font-size:11px; }
+  .page-heading h2 { font-size:25px; }
+  .section-card, .category-card { padding:16px; }
+  .step-header { padding:14px 13px; gap:10px; }
+  .step-number { min-width:68px; font-size:12px; }
+  .step-title { font-size:16px; }
+}
+
+
+/* =====================================================
+   GITHUB LOGIN + DASHBOARD + UKRAINE FACTS + TESTS
+   ===================================================== */
+.dashboard{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 20px}
+.dashboard-card{position:relative;text-align:left;border:1px solid var(--border);background:#fff;border-radius:14px;padding:18px;cursor:pointer;box-shadow:var(--shadow);transition:.2s;min-height:145px}
+.dashboard-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.dashboard-icon{font-size:32px;margin-bottom:12px}.dashboard-title{font-weight:800;font-size:18px;color:var(--navy);margin-bottom:7px}.dashboard-text{font-size:13px;color:var(--muted);line-height:1.45}
+.dashboard-badge{position:absolute;right:12px;top:12px;background:var(--yellow);color:var(--navy);font-size:10px;font-weight:800;border-radius:20px;padding:4px 7px}
+.dashboard-view{display:none}.dashboard-view.active{display:block}
+.logout-button{float:right;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}
+.header-actions{position:absolute;right:15px;top:15px;z-index:5}
+.flag-button{position:fixed;right:16px;bottom:18px;width:52px;height:52px;border:3px solid #fff;border-radius:50%;background:linear-gradient(#0057b7 0 50%,#ffd700 50%);box-shadow:0 8px 22px rgba(0,0,0,.22);cursor:pointer;z-index:50;padding:0}
+.fact-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:100;align-items:center;justify-content:center;padding:18px}.fact-overlay.open{display:flex}
+.fact-modal{width:min(520px,100%);background:#fff;border-radius:18px;padding:22px;box-shadow:0 20px 70px rgba(0,0,0,.3);position:relative}.fact-close{position:absolute;right:12px;top:8px;border:0;background:transparent;color:var(--navy);font-size:30px;cursor:pointer;width:auto;padding:0}.fact-category{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#687680;font-weight:800;margin-bottom:10px}.fact-text{font-size:20px;line-height:1.45;color:#17212b;padding-right:25px}.fact-next{margin-top:18px;background:var(--navy);color:#fff;width:100%;border:0;border-radius:10px;padding:12px;font-weight:800}.fact-source{margin-top:10px;font-size:11px;color:#8a959d;line-height:1.35}
+.test-panel{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.test-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:15px}.test-title{font-size:24px;font-weight:800;color:var(--navy)}.test-progress{font-size:13px;color:var(--muted)}
+.question-card{border:1px solid var(--border);border-radius:13px;padding:18px;background:#fafbfc}.question-number{font-size:12px;font-weight:800;color:#687680;margin-bottom:9px}.question-text{font-size:18px;line-height:1.45;font-weight:700;margin-bottom:15px}.answer-list{display:grid;gap:9px}.answer-option{width:100%;text-align:left;border:1px solid #d9e1e7;background:#fff;color:#17212b;border-radius:10px;padding:13px;cursor:pointer;font-size:14px;line-height:1.4}.answer-option:hover{border-color:#123b61}.answer-option.selected{border-color:#123b61;background:#edf4fa;box-shadow:0 0 0 2px rgba(18,59,97,.08)}
+.test-actions{display:flex;gap:10px;margin-top:14px}.test-actions button{flex:1}.test-secondary{background:#eef2f5!important;color:var(--navy)!important}
+.result-summary{padding:18px;border-radius:12px;background:#f4f6f8;margin-bottom:14px}.score{font-size:30px;font-weight:900;color:var(--navy)}.result-item{border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:9px}.result-item.bad{background:#fff7f7;border-color:#f0c7c7}.result-item.good{background:#f4fbf5;border-color:#c8e3cc}.result-question{font-weight:700}.result-your{margin-top:6px;font-size:13px}.result-correct{margin-top:4px;font-size:13px;font-weight:700;color:#246b35}
+@media(max-width:760px){.dashboard{grid-template-columns:1fr}.dashboard-card{min-height:110px}.test-top{align-items:flex-start;flex-direction:column}.question-text{font-size:16px}.flag-button{right:12px;bottom:12px}}
+
+/* V19 navigation and testing menu */
+.dashboard-footer{display:flex;justify-content:center;margin:4px 0 22px;padding-top:4px}
+.dashboard-logout{width:auto;min-width:130px;border:1px solid var(--border);background:#fff;color:var(--navy);border-radius:10px;padding:10px 20px;font-weight:800;cursor:pointer;box-shadow:var(--shadow)}
+.dashboard-logout:hover{background:#f5f7f9}
+.section-nav-row{display:flex;align-items:center;margin-bottom:10px}
+.test-menu{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.test-menu-title{font-size:26px;font-weight:900;color:var(--navy);margin:4px 0 5px}
+.test-menu-subtitle{font-size:14px;color:var(--muted);margin-bottom:16px}
+.test-menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.test-menu-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:1px solid var(--border);border-left:5px solid var(--yellow);background:#fff;border-radius:12px;padding:18px;min-height:150px;cursor:pointer;box-shadow:0 4px 14px rgba(7,27,47,.06);transition:.2s}
+.test-menu-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.test-menu-card.disabled{opacity:.58;cursor:not-allowed;border-left-color:#c8d0d6}
+.test-menu-card.disabled:hover{transform:none;box-shadow:0 4px 14px rgba(7,27,47,.06)}
+.test-menu-icon{font-size:30px;margin-bottom:10px}
+.test-menu-card-title{font-size:18px;font-weight:900;color:var(--navy);margin-bottom:6px}
+.test-menu-card-text{font-size:13px;color:var(--muted);line-height:1.45}
+.test-question-view{display:none}
+@media(max-width:760px){.test-menu-grid{grid-template-columns:1fr}.test-menu{padding:14px}.test-menu-card{min-height:125px}}
+
+/* V21: useful tools */
+.tools-view{display:none;padding:0 0 28px}.tools-view.active{display:block}.tools-title{font-size:26px;font-weight:900;color:var(--navy);margin:6px 0 8px}.tools-subtitle{color:var(--muted);margin-bottom:18px}.tools-back{margin-bottom:16px}.tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tool-card{border:1px solid var(--border);background:#fff;border-radius:14px;padding:18px;text-align:left;cursor:pointer;box-shadow:var(--shadow);transition:.2s}.tool-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}.tool-icon{font-size:30px;margin-bottom:8px}.tool-card-title{font-size:18px;font-weight:900;color:var(--navy)}.tool-card-text{font-size:13px;color:var(--muted);margin-top:5px}.tool-panel{display:none}.tool-panel.active{display:block}.calculator{max-width:420px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}.calc-display{width:100%;box-sizing:border-box;background:#071b2f;color:#fff;border:0;border-radius:10px;padding:18px 14px;font-size:30px;text-align:right;margin-bottom:12px;min-height:68px}.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.calc-btn{border:1px solid var(--border);background:#f5f7f9;border-radius:10px;padding:16px;font-size:18px;font-weight:800;cursor:pointer}.calc-btn:hover{background:#e9eef2}.calc-btn.operator{font-weight:900}.calc-btn.equals{background:var(--yellow)}.calc-btn.wide{grid-column:span 2}.calendar-wrap{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.calendar-month{font-size:22px;font-weight:900;color:var(--navy);text-align:center}.calendar-nav{display:flex;gap:7px}.calendar-nav button,.calendar-today{border:1px solid var(--border);background:#fff;border-radius:9px;padding:9px 12px;cursor:pointer;font-weight:800}.calendar-today{display:block;margin:0 auto 14px}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.cal-weekday{font-size:12px;font-weight:900;text-align:center;color:var(--muted);padding:6px 2px}.cal-day{min-height:66px;border:1px solid #e5e9ed;border-radius:9px;padding:7px;background:#fff;text-align:left;position:relative}.cal-day.muted{opacity:.38}.cal-day.today{outline:2px solid var(--yellow)}.cal-day.holiday{background:#fff8df}.cal-num{font-weight:900;color:var(--navy)}.cal-holiday{display:block;font-size:10px;line-height:1.15;margin-top:5px;color:#7a5a00;font-weight:700}.holiday-list{margin-top:18px;border-top:1px solid var(--border);padding-top:14px}.holiday-item{padding:8px 0;border-bottom:1px solid #edf0f2}.holiday-date{font-weight:900;color:var(--navy)}.holiday-name{color:var(--muted);font-size:13px}@media(max-width:760px){.tools-grid{grid-template-columns:1fr}.calendar-month{font-size:18px}.cal-day{min-height:54px;padding:5px}.cal-holiday{font-size:9px}.calc-btn{padding:14px}}
+
+/* V22: coordinates */
+.compass-card{max-width:520px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}.compass-status{background:#f4f6f8;border-radius:10px;padding:11px 12px;color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:16px}.compass-wrap{width:min(72vw,300px);height:min(72vw,300px);max-width:300px;max-height:300px;margin:0 auto;position:relative;display:grid;place-items:center}.compass-ring{width:100%;height:100%;border-radius:50%;border:6px solid var(--navy);background:radial-gradient(circle,#fff 0 58%,#f2f5f7 59% 68%,#fff 69%);box-sizing:border-box;position:relative;transition:transform .18s linear;box-shadow:inset 0 0 0 2px #d7dde2,0 6px 20px rgba(0,0,0,.08)}.compass-ring:before{content:'';position:absolute;inset:11%;border:1px dashed #b9c2c9;border-radius:50%}.compass-mark{position:absolute;font-weight:900;color:var(--navy);font-size:18px;transform:translate(-50%,-50%);z-index:2}.compass-mark.north{left:50%;top:8%}.compass-mark.east{left:92%;top:50%}.compass-mark.south{left:50%;top:92%}.compass-mark.west{left:8%;top:50%}.compass-mark.ne{left:80%;top:20%;font-size:12px}.compass-mark.se{left:80%;top:80%;font-size:12px}.compass-mark.sw{left:20%;top:80%;font-size:12px}.compass-mark.nw{left:20%;top:20%;font-size:12px}.compass-ticks{position:absolute;inset:5%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(7,27,47,.65) 0deg 1deg,transparent 1deg 6deg);mask:radial-gradient(circle,transparent 0 78%,#000 79% 82%,transparent 83%);-webkit-mask:radial-gradient(circle,transparent 0 78%,#000 79% 82%,transparent 83%)}.compass-pointer{position:absolute;width:5px;height:43%;top:8%;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none}.compass-pointer:before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:28px solid #d33}.compass-pointer:after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:8px;height:48%;border-radius:5px;background:var(--navy)}.compass-pointer span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:var(--yellow);border:4px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.2)}.compass-reading{text-align:center;margin-top:16px}.compass-degree{font-size:42px;line-height:1;font-weight:900;color:var(--navy)}.compass-direction{font-size:18px;font-weight:900;color:var(--muted);margin-top:7px}.compass-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.compass-actions button{border:1px solid var(--border);background:#f5f7f9;color:var(--navy);border-radius:10px;padding:12px;font-weight:800;cursor:pointer}.compass-help{font-size:12px;line-height:1.45;color:var(--muted);margin-top:12px;text-align:center}@media(max-width:760px){.compass-actions{grid-template-columns:1fr}}
+.coord-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.coord-tab{border:1px solid var(--border);background:#fff;color:var(--navy);border-radius:10px;padding:11px 10px;font-weight:800;cursor:pointer}.coord-tab.active{background:var(--navy);color:#fff}.coord-subpanel{display:none}.coord-subpanel.active{display:block}.coord-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}.coord-status{background:#f4f6f8;border-radius:10px;padding:11px 12px;color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:14px}.coord-main-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.coord-main-grid>div{border:1px solid var(--border);border-radius:11px;padding:12px;background:#fafbfc}.coord-label{font-size:12px;color:var(--muted);font-weight:800;margin-bottom:5px}.coord-value{font-size:22px;font-weight:900;color:var(--navy);word-break:break-word}.coord-value.small{font-size:17px}.coord-mgrs{font-size:19px}.coord-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:14px}.coord-actions button,.coord-card button{border:1px solid var(--border);background:#f5f7f9;color:var(--navy);border-radius:10px;padding:12px;font-weight:800;cursor:pointer}.coord-actions .coord-primary,.coord-primary{background:var(--navy);color:#fff;border-color:var(--navy)}.coord-input-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.coord-input-grid input,.coord-full-input{width:100%;box-sizing:border-box;border:1px solid var(--border);border-radius:10px;padding:13px;font-size:15px;margin-bottom:10px;background:#fff}.coord-results{margin-top:14px;display:grid;gap:9px}.coord-results>div{border:1px solid var(--border);border-radius:10px;padding:12px;background:#fafbfc}.coord-results span{display:block;color:var(--muted);font-size:12px;font-weight:800;margin-bottom:4px}.coord-results strong{color:var(--navy);font-size:18px;word-break:break-word}.coord-mgrs-input-label{margin-top:18px}.saved-point{border:1px solid var(--border);border-radius:11px;padding:12px;margin-top:9px;background:#fafbfc}.saved-point-title{font-weight:900;color:var(--navy)}.saved-point-coords{font-size:13px;color:var(--muted);margin-top:4px;word-break:break-word}.saved-point-actions{display:flex;gap:7px;margin-top:9px}.saved-point-actions button{padding:8px 10px;font-size:12px}.empty-saved{color:var(--muted);font-size:14px;padding:12px 0}@media(max-width:760px){.compass-card{max-width:520px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}.compass-status{background:#f4f6f8;border-radius:10px;padding:11px 12px;color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:16px}.compass-wrap{width:min(72vw,300px);height:min(72vw,300px);max-width:300px;max-height:300px;margin:0 auto;position:relative;display:grid;place-items:center}.compass-ring{width:100%;height:100%;border-radius:50%;border:6px solid var(--navy);background:radial-gradient(circle,#fff 0 58%,#f2f5f7 59% 68%,#fff 69%);box-sizing:border-box;position:relative;transition:transform .18s linear;box-shadow:inset 0 0 0 2px #d7dde2,0 6px 20px rgba(0,0,0,.08)}.compass-ring:before{content:'';position:absolute;inset:11%;border:1px dashed #b9c2c9;border-radius:50%}.compass-mark{position:absolute;font-weight:900;color:var(--navy);font-size:18px;transform:translate(-50%,-50%);z-index:2}.compass-mark.north{left:50%;top:8%}.compass-mark.east{left:92%;top:50%}.compass-mark.south{left:50%;top:92%}.compass-mark.west{left:8%;top:50%}.compass-mark.ne{left:80%;top:20%;font-size:12px}.compass-mark.se{left:80%;top:80%;font-size:12px}.compass-mark.sw{left:20%;top:80%;font-size:12px}.compass-mark.nw{left:20%;top:20%;font-size:12px}.compass-ticks{position:absolute;inset:5%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(7,27,47,.65) 0deg 1deg,transparent 1deg 6deg);mask:radial-gradient(circle,transparent 0 78%,#000 79% 82%,transparent 83%);-webkit-mask:radial-gradient(circle,transparent 0 78%,#000 79% 82%,transparent 83%)}.compass-pointer{position:absolute;width:5px;height:43%;top:8%;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none}.compass-pointer:before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:28px solid #d33}.compass-pointer:after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:8px;height:48%;border-radius:5px;background:var(--navy)}.compass-pointer span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:var(--yellow);border:4px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.2)}.compass-reading{text-align:center;margin-top:16px}.compass-degree{font-size:42px;line-height:1;font-weight:900;color:var(--navy)}.compass-direction{font-size:18px;font-weight:900;color:var(--muted);margin-top:7px}.compass-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.compass-actions button{border:1px solid var(--border);background:#f5f7f9;color:var(--navy);border-radius:10px;padding:12px;font-weight:800;cursor:pointer}.compass-help{font-size:12px;line-height:1.45;color:var(--muted);margin-top:12px;text-align:center}@media(max-width:760px){.compass-actions{grid-template-columns:1fr}}
+.coord-tabs{grid-template-columns:1fr}.coord-main-grid,.coord-input-grid,.coord-actions{grid-template-columns:1fr}.coord-value{font-size:19px}}
+
+
+.weather-card{max-width:900px;margin:0 auto;background:var(--card-bg,#fff);border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.weather-location-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.weather-location-row input{flex:1;min-width:180px;padding:12px;border:1px solid #ccd3dc;border-radius:12px;font-size:16px}.weather-location-row button,.weather-actions button{padding:12px 14px;border:0;border-radius:12px;cursor:pointer;font-weight:600}.weather-primary{background:#12395f;color:#fff}.weather-status{padding:10px 12px;border-radius:10px;background:#f1f5f9;margin-bottom:14px}.weather-current{display:grid;grid-template-columns:1fr 1fr;gap:12px}.weather-main{padding:16px;border-radius:16px;background:#eef5fb;text-align:center}.weather-temp{font-size:48px;font-weight:800}.weather-desc{font-size:18px;font-weight:600}.weather-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.weather-item{padding:12px;border:1px solid #e2e8f0;border-radius:12px}.weather-item span{display:block;color:#64748b;font-size:13px}.weather-item strong{font-size:18px}.weather-section{margin-top:16px}.weather-section h3{margin:0 0 10px}.weather-hourly{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}.weather-hour{min-width:105px;padding:10px;border:1px solid #e2e8f0;border-radius:12px;text-align:center}.weather-daily{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px}.weather-day{padding:11px;border:1px solid #e2e8f0;border-radius:12px}.weather-alert{padding:12px;border-radius:12px;background:#fff7ed;margin-top:10px}.weather-field{padding:14px;border-radius:12px;background:#eef8f0;font-weight:700}.weather-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}@media(max-width:700px){.weather-current{grid-template-columns:1fr}.weather-grid{grid-template-columns:1fr}.weather-temp{font-size:42px}}
+</style>
+
+  <meta name="theme-color" content="#071b2f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+
+
+<body>
+<script src="auth.js"></script>
+<script>if(!window.PIDTRYMKA_AUTH || !PIDTRYMKA_AUTH.isLoggedIn()){location.replace('index.html');}</script>
+
+
+<!-- Перегляд фото методички на весь екран -->
+<div id="photoLightbox" class="photo-lightbox" aria-hidden="true">
+  <button id="photoLightboxClose" class="photo-lightbox-close" type="button" aria-label="Закрити">&times;</button>
+  <img id="photoLightboxImage" class="photo-lightbox-image" src="" alt="Фото">
+  <div class="photo-lightbox-hint">Збільшуйте двома пальцями • натисніть ✕ для закриття</div>
+</div>
+
+<div class="top-line"></div>
+
+
+<header>
+
+  <div class="header-inner">
+<div class="header-content">
+
+      <h1 class="header-title">
+        Заради безпеки - підтримка поруч
+      </h1>
+
+
+      <div class="header-subtitle">
+        НАВЧАЛЬНІ МАТЕРІАЛИ
+      </div>
+
+      <div class="yellow-line"></div>
+
+    </div>
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<div id="dashboardView" class="dashboard-view active">
+  <div class="dashboard">
+    <button class="dashboard-card" id="usefulInfoBtn" type="button">
+      <div class="dashboard-icon">📚</div>
+      <div class="dashboard-title">Корисна інформація</div>
+      <div class="dashboard-text">Навчальні матеріали та корисна інформація для щоденного використання.</div>
+    </button>
+    <button class="dashboard-card" id="testingBtn" type="button">
+      <span class="dashboard-badge">5 питань</span>
+      <div class="dashboard-icon">📝</div>
+      <div class="dashboard-title">Тестування</div>
+      <div class="dashboard-text">Перевір свої знання з історії України. 5 випадкових питань із навчальної бази.</div>
+    </button>
+    <button class="dashboard-card" id="toolsBtn" type="button">
+      <div class="dashboard-icon">🧰</div>
+      <div class="dashboard-title">Інструменти</div>
+      <div class="dashboard-text">Калькулятор, календар, координати, компас та погода для щоденного використання.</div>
+    </button>
+    <button class="dashboard-card" id="feedbackBtnTop" type="button">
+      <div class="dashboard-icon">💬</div>
+      <div class="dashboard-title">Зворотний зв’язок</div>
+      <div class="dashboard-text">Запропонувати ідею, додати інформацію або повідомити про помилку.</div>
+    </button>
+  </div>
+  <div class="dashboard-footer">
+    <button id="logoutButton" class="dashboard-logout" type="button">Вийти</button>
+  </div>
+</div>
+<div id="toolsView" class="tools-view">
+  <div class="tools-back"><button id="backFromTools" class="back-button" type="button">← На головний екран</button></div>
+  <div class="tools-title">Інструменти</div>
+  <div class="tools-subtitle">Оберіть потрібний інструмент</div>
+  <div id="toolsMenu" class="tools-grid">
+    <button class="tool-card" id="calculatorBtn" type="button"><div class="tool-icon">🧮</div><div class="tool-card-title">Калькулятор</div><div class="tool-card-text">Швидкі розрахунки прямо в програмі.</div></button>
+    <button class="tool-card" id="calendarBtn" type="button"><div class="tool-icon">📅</div><div class="tool-card-title">Календар</div><div class="tool-card-text">Місяць, дні тижня та основні свята України.</div></button>
+    <button class="tool-card" id="coordinatesBtn" type="button"><div class="tool-icon">📍</div><div class="tool-card-title">Координати</div><div class="tool-card-text">GPS, MGRS, конвертер, збереження точок та Google Maps.</div></button>
+    <button class="tool-card" id="compassBtn" type="button"><div class="tool-icon">🧭</div><div class="tool-card-title">Компас</div><div class="tool-card-text">Напрямок, градуси та калібрування датчиків телефона.</div></button>
+    <button class="tool-card" id="weatherBtn" type="button"><div class="tool-icon">🌦️</div><div class="tool-card-title">Погода</div><div class="tool-card-text">Поточні умови, прогноз, вітер, опади, сонце та польові умови.</div></button>
+  </div>
+  <div id="calculatorPanel" class="tool-panel">
+    <div class="tools-back"><button id="backToToolsMenuFromCalc" class="back-button" type="button">← До корисних інструментів</button></div>
+    <div class="calculator">
+      <input id="calcDisplay" class="calc-display" value="0" readonly aria-label="Результат калькулятора">
+      <div class="calc-grid">
+        <button class="calc-btn wide" data-calc="clear">C</button><button class="calc-btn" data-calc="back">⌫</button><button class="calc-btn operator" data-calc="/">÷</button>
+        <button class="calc-btn" data-calc="7">7</button><button class="calc-btn" data-calc="8">8</button><button class="calc-btn" data-calc="9">9</button><button class="calc-btn operator" data-calc="*">×</button>
+        <button class="calc-btn" data-calc="4">4</button><button class="calc-btn" data-calc="5">5</button><button class="calc-btn" data-calc="6">6</button><button class="calc-btn operator" data-calc="-">−</button>
+        <button class="calc-btn" data-calc="1">1</button><button class="calc-btn" data-calc="2">2</button><button class="calc-btn" data-calc="3">3</button><button class="calc-btn operator" data-calc="+">+</button>
+        <button class="calc-btn wide" data-calc="0">0</button><button class="calc-btn" data-calc=".">.</button><button class="calc-btn equals" data-calc="=">=</button>
+      </div>
+    </div>
+  </div>
+  <div id="coordinatesPanel" class="tool-panel">
+    <div class="tools-back"><button id="backToToolsMenuFromCoordinates" class="back-button" type="button">← До корисних інструментів</button></div>
+    <div class="coord-tabs">
+      <button id="coordMyBtn" class="coord-tab active" type="button">📍 Моє місцезнаходження</button>
+      <button id="coordConvertBtn" class="coord-tab" type="button">🔄 Конвертер</button>
+      <button id="coordSavedBtn" class="coord-tab" type="button">📌 Збережені точки</button>
+    </div>
+    <div id="coordMyPanel" class="coord-subpanel active">
+      <div class="coord-card">
+        <div class="coord-status" id="coordStatus">Натисніть «Отримати координати», щоб дозволити доступ до геолокації.</div>
+        <div class="coord-main-grid">
+          <div><div class="coord-label">Широта</div><div id="coordLat" class="coord-value">—</div></div>
+          <div><div class="coord-label">Довгота</div><div id="coordLon" class="coord-value">—</div></div>
+          <div><div class="coord-label">MGRS</div><div id="coordMgrs" class="coord-value coord-mgrs">—</div></div>
+          <div><div class="coord-label">Точність</div><div id="coordAccuracy" class="coord-value small">—</div></div>
+          <div><div class="coord-label">Висота</div><div id="coordAltitude" class="coord-value small">—</div></div>
+          <div><div class="coord-label">Оновлено</div><div id="coordUpdated" class="coord-value small">—</div></div>
+        </div>
+        <div class="coord-actions">
+          <button id="getLocationBtn" class="coord-primary" type="button">📍 Отримати координати</button>
+          <button id="refreshLocationBtn" type="button">🔄 Оновити</button>
+          <button id="copyGpsBtn" type="button">📋 Копіювати GPS</button>
+          <button id="copyMgrsBtn" type="button">📋 Копіювати MGRS</button>
+          <button id="shareCoordsBtn" type="button">📤 Поділитися</button>
+          <button id="openGoogleMapsBtn" type="button">🗺️ Відкрити в Google Maps</button>
+          <button id="saveCurrentPointBtn" type="button">📌 Зберегти точку</button>
+        </div>
+      </div>
+    </div>
+    <div id="coordConvertPanel" class="coord-subpanel">
+      <div class="coord-card">
+        <div class="coord-label">Введіть GPS у десятковому форматі</div>
+        <div class="coord-input-grid">
+          <input id="convertLat" type="number" step="any" placeholder="Широта, наприклад 48.620800">
+          <input id="convertLon" type="number" step="any" placeholder="Довгота, наприклад 22.287900">
+        </div>
+        <button id="convertGpsBtn" class="coord-primary" type="button">🔄 Конвертувати</button>
+        <div class="coord-results">
+          <div><span>DMS</span><strong id="convertDms">—</strong></div>
+          <div><span>MGRS</span><strong id="convertMgrs">—</strong></div>
+          <button id="convertGoogleMapsBtn" type="button">🗺️ Відкрити цю точку в Google Maps</button>
+        </div>
+        <div class="coord-label coord-mgrs-input-label">Або введіть MGRS</div>
+        <input id="mgrsInput" class="coord-full-input" type="text" placeholder="Наприклад: 34U FB 12345 67890">
+        <button id="convertMgrsBtn" type="button">🔄 MGRS → GPS</button>
+        <div id="mgrsConvertResult" class="coord-status"></div>
+      </div>
+    </div>
+    <div id="coordSavedPanel" class="coord-subpanel">
+      <div class="coord-card">
+        <div class="coord-label">Збережені точки зберігаються на цьому пристрої.</div>
+        <div id="savedPointsList" class="saved-points-list"></div>
+      </div>
+    </div>
+  </div>
+  <div id="compassPanel" class="tool-panel">
+    <div class="tools-back"><button id="backToToolsMenuFromCompass" class="back-button" type="button">← До корисних інструментів</button></div>
+    <div class="compass-card">
+      <div class="compass-status" id="compassStatus">Натисніть «Увімкнути компас», щоб дозволити доступ до датчиків орієнтації.</div>
+      <div class="compass-wrap">
+        <div class="compass-ring" id="compassRing" aria-label="Компас">
+          <div class="compass-mark north">N</div>
+          <div class="compass-mark east">E</div>
+          <div class="compass-mark south">S</div>
+          <div class="compass-mark west">W</div>
+          <div class="compass-mark ne">NE</div>
+          <div class="compass-mark se">SE</div>
+          <div class="compass-mark sw">SW</div>
+          <div class="compass-mark nw">NW</div>
+          <div class="compass-ticks"></div>
+        </div>
+        <div class="compass-pointer" aria-hidden="true"><span></span></div>
+      </div>
+      <div class="compass-reading">
+        <div class="compass-degree" id="compassDegree">—°</div>
+        <div class="compass-direction" id="compassDirection">Очікування датчика</div>
+      </div>
+      <div class="compass-actions">
+        <button id="enableCompassBtn" class="coord-primary" type="button">🧭 Увімкнути компас</button>
+        <button id="calibrateCompassBtn" type="button">🔧 Калібрування</button>
+      </div>
+      <div class="compass-help">Для точнішого показу тримайте телефон горизонтально. На деяких пристроях браузер може не підтримувати датчик орієнтації.</div>
+    </div>
+  </div>
+  <div id="weatherPanel" class="tool-panel">
+    <div class="tools-back"><button id="backToToolsMenuFromWeather" class="back-button" type="button">← До корисних інструментів</button></div>
+    <div class="weather-card">
+      <div class="weather-location-row">
+        <button id="weatherMyLocationBtn" class="weather-primary" type="button">📍 Моє місцезнаходження</button>
+        <input id="weatherCityInput" type="text" placeholder="Місто, наприклад Ужгород">
+        <button id="weatherCityBtn" type="button">🔎 Знайти</button>
+      </div>
+      <div id="weatherStatus" class="weather-status">Оберіть місцезнаходження або місто.</div>
+      <div id="weatherContent" style="display:none">
+        <div class="weather-current">
+          <div class="weather-main"><div id="weatherIcon" style="font-size:44px">🌤️</div><div id="weatherTemp" class="weather-temp">—</div><div id="weatherFeels" class="weather-desc">—</div><div id="weatherDesc" class="weather-desc">—</div></div>
+          <div class="weather-grid">
+            <div class="weather-item"><span>💨 Вітер</span><strong id="weatherWind">—</strong></div>
+            <div class="weather-item"><span>🧭 Напрямок</span><strong id="weatherWindDir">—</strong></div>
+            <div class="weather-item"><span>💨 Пориви</span><strong id="weatherGust">—</strong></div>
+            <div class="weather-item"><span>💧 Вологість</span><strong id="weatherHumidity">—</strong></div>
+            <div class="weather-item"><span>🌧️ Опади</span><strong id="weatherPrecip">—</strong></div>
+            <div class="weather-item"><span>👁️ Видимість</span><strong id="weatherVisibility">—</strong></div>
+            <div class="weather-item"><span>📊 Тиск</span><strong id="weatherPressure">—</strong></div>
+            <div class="weather-item"><span>☀️ UV</span><strong id="weatherUv">—</strong></div>
+          </div>
+        </div>
+        <div class="weather-section"><h3>🌅 Сонце</h3><div class="weather-grid"><div class="weather-item"><span>Схід</span><strong id="weatherSunrise">—</strong></div><div class="weather-item"><span>Захід</span><strong id="weatherSunset">—</strong></div><div class="weather-item"><span>Світловий день</span><strong id="weatherDaylight">—</strong></div></div></div>
+        <div class="weather-section"><h3>🕐 Погодинний прогноз</h3><div id="weatherHourly" class="weather-hourly"></div></div>
+        <div class="weather-section"><h3>📅 Прогноз</h3><div id="weatherDaily" class="weather-daily"></div></div>
+        <div class="weather-section"><h3>⚠️ Попередження</h3><div id="weatherAlerts" class="weather-alert">Небезпечних умов за простими порогами не виявлено.</div></div>
+        <div class="weather-section"><h3>🏕️ Польові умови</h3><div id="weatherField" class="weather-field">—</div></div>
+        <div class="weather-actions"><button id="weatherRefreshBtn" type="button">🔄 Оновити</button></div>
+      </div>
+    </div>
+  </div>
+  <div id="calendarPanel" class="tool-panel">
+    <div class="tools-back"><button id="backToToolsMenuFromCalendar" class="back-button" type="button">← До корисних інструментів</button></div>
+    <div class="calendar-wrap">
+      <div class="calendar-head"><div class="calendar-nav"><button id="prevMonth" type="button">←</button></div><div id="calendarMonth" class="calendar-month"></div><div class="calendar-nav"><button id="nextMonth" type="button">→</button></div></div>
+      <button id="calendarToday" class="calendar-today" type="button">Сьогодні</button>
+      <div id="calendarGrid" class="calendar-grid"></div>
+      <div id="holidayList" class="holiday-list"></div>
+    </div>
+  </div>
+</div>
+<div id="testView" class="dashboard-view">
+  <div id="testMenu" class="test-menu">
+    <div class="section-nav-row">
+      <button id="backFromTesting" class="back-button" type="button">← На головний екран</button>
+    </div>
+    <div class="test-menu-title">Тестування</div>
+    <div class="test-menu-subtitle">Оберіть напрям тестування</div>
+    <div class="test-menu-grid">
+      <button class="test-menu-card" id="historyTestBtn" type="button">
+        <span class="test-menu-icon">🇺🇦</span>
+        <span class="test-menu-card-title">Історія України</span>
+        <span class="test-menu-card-text">5 випадкових питань із бази зі 100 питань</span>
+      </button>
+    </div>
+  </div>
+  <div id="testQuestionView" class="test-question-view">
+    <div class="test-panel">
+      <div class="section-nav-row">
+        <button id="backToTestMenu" class="back-button" type="button">← До тестування</button>
+      </div>
+      <div class="test-top"><div id="testTitle" class="test-title">Історія України</div><div id="testProgress" class="test-progress"></div></div>
+      <div id="testBody"></div>
+    </div>
+  </div>
+</div>
+<button id="ukraineFactButton" class="flag-button" type="button" aria-label="Цікавий факт про Україну" title="Цікавий факт про Україну"></button>
+<div id="factOverlay" class="fact-overlay" aria-hidden="true">
+  <div class="fact-modal" role="dialog" aria-modal="true">
+    <button id="factClose" class="fact-close" type="button" aria-label="Закрити">×</button>
+    <div id="factCategory" class="fact-category"></div>
+    <div id="factText" class="fact-text"></div>
+    <div id="factSource" class="fact-source"></div>
+    <button id="factNext" class="fact-next" type="button">ІНШИЙ ФАКТ</button>
+  </div>
+</div>
+
+<div id="searchPanel" class="search-panel">
+  <div class="search-row">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔎</span>
+      <input
+        id="searchInput"
+        class="search-input"
+        type="search"
+        placeholder="Пошук по всій методичці..."
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button
+        id="searchClear"
+        class="search-clear"
+        type="button"
+        aria-label="Очистити пошук"
+      >×</button>
+    </div>
+  </div>
+  <div id="searchStatus" class="search-status">
+    Введіть щонайменше 2 символи. Пошук працює по всій методичці.
+  </div>
+  <div id="searchResults" class="search-results" style="display:none;"></div>
+</div>
+
+<div id="breadcrumb" class="breadcrumb"></div>
+
+
+<!-- =====================================================
+     ЗАГОЛОВОК
+     ===================================================== -->
+
+<div
+  id="pageHeading"
+  class="page-heading"
+>
+
+  <div class="page-heading-label">
+    Навчальний інформаційний ресурс
+  </div>
+
+  <h2 id="mainHeading">
+    Оберіть напрям
+  </h2>
+
+  <p id="mainDescription">
+    Оберіть категорію навчальних матеріалів.
+  </p>
+
+</div>
+
+
+<!-- =====================================================
+     ПОПЕРЕДЖЕННЯ
+     ===================================================== -->
+
+<div
+  id="safetyAlert"
+  class="safety-alert"
+>
+
+  <div class="safety-alert-title">
+
+    <div class="safety-alert-icon">
+      !
+    </div>
+
+    НАЙГОЛОВНІШЕ
+
+  </div>
+
+  <div class="safety-alert-text">
+
+    Перед наданням допомоги переконайтеся
+    у відсутності небезпеки для себе.
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     КАТЕГОРІЇ
+     ===================================================== -->
+
+<div id="categories">
+
+  <div class="message">
+
+    <div class="loading">
+
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+
+    </div>
+
+    <div style="margin-top:12px;">
+      Завантаження...
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+     ЗВОРОТНИЙ ЗВ'ЯЗОК
+     ===================================================== -->
+<div id="feedbackCard" class="feedback-card" role="button" tabindex="0" aria-label="Відкрити зворотний зв'язок">
+  <div class="feedback-icon">💬</div>
+  <div>
+    <div class="feedback-card-title">Зворотний зв’язок</div>
+    <div class="feedback-card-text">Запропонувати ідею, додати інформацію або повідомити про помилку.</div>
+  </div>
+  <div class="feedback-arrow">›</div>
+</div>
+
+<div id="feedbackOverlay" class="feedback-overlay" aria-hidden="true">
+  <div class="feedback-modal" role="dialog" aria-modal="true" aria-labelledby="feedbackModalTitle">
+    <div class="feedback-modal-head">
+      <h2 id="feedbackModalTitle" class="feedback-modal-title">Зворотний зв’язок</h2>
+      <button id="feedbackClose" class="feedback-close" type="button" aria-label="Закрити">×</button>
+    </div>
+    <p class="feedback-modal-intro">Оберіть тип звернення. Після вибору відкриється ваш поштовий клієнт із готовою темою та текстом листа.</p>
+
+    <div class="feedback-options">
+      <button class="feedback-option" type="button" data-feedback-type="idea">
+        <span class="feedback-option-icon">💡</span>
+        <span><span class="feedback-option-title">Запропонувати ідею</span><span class="feedback-option-text">Є ідея, як покращити додаток?</span></span>
+        <span class="feedback-option-arrow">›</span>
+      </button>
+      <button class="feedback-option" type="button" data-feedback-type="info">
+        <span class="feedback-option-icon">➕</span>
+        <span><span class="feedback-option-title">Додати інформацію</span><span class="feedback-option-text">Хочете додати корисну інформацію?</span></span>
+        <span class="feedback-option-arrow">›</span>
+      </button>
+      <button class="feedback-option" type="button" data-feedback-type="error">
+        <span class="feedback-option-icon">⚠️</span>
+        <span><span class="feedback-option-title">Повідомити про помилку</span><span class="feedback-option-text">Знайшли помилку або неточність?</span></span>
+        <span class="feedback-option-arrow">›</span>
+      </button>
+      <button class="feedback-option" type="button" data-feedback-type="other">
+        <span class="feedback-option-icon">✉️</span>
+        <span><span class="feedback-option-title">Інше</span><span class="feedback-option-text">Інше питання чи пропозиція</span></span>
+        <span class="feedback-option-arrow">›</span>
+      </button>
+    </div>
+
+    <div class="feedback-note">Ваше звернення допоможе нам робити «Підтримку Поруч» ще кориснішою та зручнішою.</div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     РОЗДІЛИ
+     ===================================================== -->
+
+<div id="sections"
+     style="display:none;">
+</div>
+
+
+<!-- =====================================================
+     КОНТЕНТ
+     ===================================================== -->
+
+<div id="content"></div>
+
+
+<div class="footer">
+
+  БЕЗПЕКА ПОРУЧ
+  •
+  Навчальні матеріали
+
+</div>
+
+</main>
+
+
+<script src="facts.js"></script>
+<script src="history-quiz-data.js"></script>
+<script src="offline-data.js"></script>
+<script>
+
+
+// =====================================================
+
+// Офлайн-адаптер: замінює Google Apps Script локальними даними.
+(function () {
+  const data = window.OFFLINE_APP_DATA || { sections: [], content: [] };
+  function active(value) {
+    return value === true || ['TRUE', 'ТАК', 'YES', '1'].includes(String(value || '').trim().toUpperCase());
+  }
+  function contentFor(sectionId) {
+    return data.content
+      .filter(item => String(item['Розділ'] || '').trim() === String(sectionId || '').trim() && active(item['Активний']))
+      .map(item => {
+        const photo = String(item['Фото'] || '').trim();
+        const match = photo.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || photo.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+        return Object.assign({}, item, { ФотоID: match ? match[1] : '' });
+      })
+      .sort(function (a, b) {
+        const stepA = parseFloat(String(a['Крок'] || '').replace(',', '.')) || 0;
+        const stepB = parseFloat(String(b['Крок'] || '').replace(',', '.')) || 0;
+        if (stepA !== stepB) return stepA - stepB;
+        return String(a['Підпункт'] || '').localeCompare(String(b['Підпункт'] || ''), 'uk', { numeric: true, sensitivity: 'base' });
+      });
+  }
+  function runner(success, failure) {
+    return {
+      withSuccessHandler: function (callback) { return runner(callback, failure); },
+      withFailureHandler: function (callback) { return runner(success, callback); },
+      getSections: function () {
+        setTimeout(function () {
+          try { success((data.sections || []).filter(item => active(item['Активний']))); }
+          catch (error) { if (failure) failure(error); }
+        }, 0);
+      },
+      getContent: function (sectionId) {
+        setTimeout(function () {
+          try { success(contentFor(sectionId)); }
+          catch (error) { if (failure) failure(error); }
+        }, 0);
+      }
+    };
+  }
+  window.google = window.google || {};
+  window.google.script = window.google.script || {};
+  window.google.script.run = runner(function () {});
+})();
+
+// HTML SECURITY
+// =====================================================
+
+
+// =====================================================
+// ПОШУК + НАВІГАЦІЯ
+// =====================================================
+
+let contentCache = {};
+let searchTimer = null;
+let searchRequestId = 0;
+let currentNavigation = {
+  categoryName: '',
+  sectionName: ''
+};
+
+function normalizeSearchText(value) {
+  return String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function getSearchItemText(item) {
+  return [
+    item['Підпункт'],
+    item['Заголовок'],
+    item['Текст'],
+    item['Крок']
+  ].filter(Boolean).join(' ');
+}
+
+function setBreadcrumb(categoryName, sectionName) {
+  const box = document.getElementById('breadcrumb');
+  if (!box) return;
+  box.innerHTML = '';
+  if (!categoryName && !sectionName) {
+    box.style.display = 'none';
+    return;
+  }
+  box.style.display = 'flex';
+  const back = document.createElement('button');
+  back.type = 'button';
+  if (sectionName) {
+    back.textContent = '← Назад до розділів';
+    back.addEventListener('click', function() {
+      showCategory(categoryName, allSections.filter(function(section) { return section['Категорія'] === categoryName; }));
+    });
+  } else {
+    back.textContent = '← Назад до корисної інформації';
+    back.addEventListener('click', function() { showCategories(allSections); });
+  }
+  box.appendChild(back);
+  if (sectionName) {
+    const sep = document.createElement('span');
+    sep.className = 'breadcrumb-separator';
+    sep.textContent = '›';
+    box.appendChild(sep);
+    const current = document.createElement('span');
+    current.className = 'breadcrumb-current';
+    current.textContent = sectionName;
+    box.appendChild(current);
+  } else {
+    const sep = document.createElement('span');
+    sep.className = 'breadcrumb-separator';
+    sep.textContent = '›';
+    box.appendChild(sep);
+    const current = document.createElement('span');
+    current.className = 'breadcrumb-current';
+    current.textContent = categoryName;
+    box.appendChild(current);
+  }
+}
+function escapeRegExp(value) {
+  return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlightSearchText(text, query) {
+  const safeText = escapeHtml(text || '');
+  if (!query) return safeText;
+
+  const escaped = escapeRegExp(query);
+  if (!escaped) return safeText;
+
+  const regex = new RegExp('(' + escaped + ')', 'ig');
+  return safeText.replace(regex, '<mark>$1</mark>');
+}
+
+function makeSnippet(text, query) {
+  const source = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!source) return '';
+
+  const normalizedSource = normalizeSearchText(source);
+  const normalizedQuery = normalizeSearchText(query);
+  const index = normalizedSource.indexOf(normalizedQuery);
+
+  if (index < 0) {
+    return source.length > 180
+      ? source.slice(0, 180) + '…'
+      : source;
+  }
+
+  const start = Math.max(0, index - 65);
+  const end = Math.min(source.length, index + normalizedQuery.length + 115);
+
+  let result = source.slice(start, end);
+  if (start > 0) result = '…' + result;
+  if (end < source.length) result += '…';
+
+  return result;
+}
+
+function getCachedContent(sectionId) {
+  return contentCache[String(sectionId)];
+}
+
+function loadSectionForSearch(section) {
+  const id = String(section['ID'] || '');
+
+  if (!id) {
+    return Promise.resolve([]);
+  }
+
+  const cached = getCachedContent(id);
+
+  if (cached) {
+    return Promise.resolve(cached);
+  }
+
+  return new Promise(function(resolve) {
+    google.script.run
+      .withSuccessHandler(function(items) {
+        const result = items || [];
+        contentCache[id] = result;
+        resolve(result);
+      })
+      .withFailureHandler(function() {
+        contentCache[id] = [];
+        resolve([]);
+      })
+      .getContent(section['ID']);
+  });
+}
+
+async function buildSearchIndex(requestId) {
+  const sections = allSections.slice();
+  const results = [];
+  let nextIndex = 0;
+  const workerCount = Math.min(3, sections.length);
+
+  async function worker() {
+    while (nextIndex < sections.length) {
+      const index = nextIndex++;
+      const section = sections[index];
+
+      const items = await loadSectionForSearch(section);
+
+      if (requestId !== searchRequestId) {
+        return;
+      }
+
+      items.forEach(function(item) {
+        results.push({
+          category: section['Категорія'] || 'Інші матеріали',
+          sectionId: section['ID'],
+          sectionName: section['Назва'] || 'Без назви',
+          sectionIcon: section['Іконка'] || '🛡️',
+          step: String(item['Крок'] || '').trim(),
+          title: item['Заголовок'] || '',
+          text: item['Текст'] || '',
+          subpoint: item['Підпункт'] || ''
+        });
+      });
+    }
+  }
+
+  await Promise.all(
+    Array.from({length: workerCount}, worker)
+  );
+
+  return results;
+}
+
+function searchAllContent(query, requestId) {
+  const status = document.getElementById('searchStatus');
+  const resultsBox = document.getElementById('searchResults');
+
+  if (!status || !resultsBox) return;
+
+  status.textContent = 'Пошук по всій методичці…';
+  resultsBox.style.display = 'grid';
+  resultsBox.innerHTML = `
+    <div class="search-empty">
+      Завантажую текстовий індекс. Фото та відео не завантажуються.
+    </div>
+  `;
+
+  buildSearchIndex(requestId).then(function(index) {
+    if (requestId !== searchRequestId) return;
+
+    const q = normalizeSearchText(query);
+
+    const results = index.filter(function(item) {
+      const haystack = normalizeSearchText([
+        item.category,
+        item.sectionName,
+        item.step,
+        item.title,
+        item.text,
+        item.subpoint
+      ].join(' '));
+
+      return haystack.includes(q);
+    }).slice(0, 50);
+
+    renderSearchResults(results, query);
+  });
+}
+
+function renderSearchResults(results, query) {
+  const status = document.getElementById('searchStatus');
+  const resultsBox = document.getElementById('searchResults');
+
+  if (!status || !resultsBox) return;
+
+  status.textContent =
+    results.length
+      ? 'Знайдено результатів: ' + results.length
+      : 'Нічого не знайдено. Спробуйте іншу частину слова.';
+
+  resultsBox.style.display = 'grid';
+  resultsBox.innerHTML = '';
+
+  if (!results.length) {
+    resultsBox.innerHTML = `
+      <div class="search-empty">
+        За запитом «${escapeHtml(query)}» нічого не знайдено.
+      </div>
+    `;
+    return;
+  }
+
+  results.forEach(function(result) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'search-result';
+
+    const title = result.title || ('Крок ' + result.step);
+
+    const titleBox = document.createElement('div');
+    titleBox.className = 'search-result-title';
+    titleBox.innerHTML = highlightSearchText(title, query);
+
+    const path = document.createElement('div');
+    path.className = 'search-result-path';
+    path.textContent =
+      result.category + ' › ' +
+      result.sectionName +
+      (result.step ? ' › Крок ' + result.step : '');
+
+    const snippet = document.createElement('div');
+    snippet.className = 'search-result-snippet';
+    snippet.innerHTML = highlightSearchText(
+      makeSnippet(result.text || title, query),
+      query
+    );
+
+    button.appendChild(titleBox);
+    button.appendChild(path);
+
+    if (result.text) {
+      button.appendChild(snippet);
+    }
+
+    button.addEventListener('click', function() {
+      openSearchResult(result);
+    });
+
+    resultsBox.appendChild(button);
+  });
+}
+
+function openSearchResult(result) {
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+
+  if (searchInput) searchInput.blur();
+  if (searchResults) searchResults.style.display = 'none';
+
+  const section = allSections.find(function(item) {
+    return String(item['ID']) === String(result.sectionId);
+  });
+
+  if (!section) return;
+
+  showCategory(
+    result.category,
+    allSections.filter(function(item) {
+      return item['Категорія'] === result.category;
+    })
+  );
+
+  loadContent(
+    result.sectionId,
+    result.sectionName,
+    result.sectionIcon,
+    result.category,
+    result.step
+  );
+}
+
+function clearSearch() {
+  const input = document.getElementById('searchInput');
+  const clear = document.getElementById('searchClear');
+  const results = document.getElementById('searchResults');
+  const status = document.getElementById('searchStatus');
+
+  searchRequestId++;
+
+  if (input) input.value = '';
+  if (clear) clear.classList.remove('show');
+  if (results) {
+    results.innerHTML = '';
+    results.style.display = 'none';
+  }
+  if (status) {
+    status.textContent =
+      'Введіть щонайменше 2 символи. Пошук працює по всій методичці.';
+  }
+}
+
+function setupSearch() {
+  const input = document.getElementById('searchInput');
+  const clear = document.getElementById('searchClear');
+
+  if (!input || !clear) return;
+
+  input.addEventListener('input', function() {
+    const query = input.value.trim();
+
+    clear.classList.toggle('show', query.length > 0);
+
+    clearTimeout(searchTimer);
+    searchRequestId++;
+
+    const requestId = searchRequestId;
+
+    if (query.length < 2) {
+      const results = document.getElementById('searchResults');
+      const status = document.getElementById('searchStatus');
+
+      if (results) {
+        results.innerHTML = '';
+        results.style.display = 'none';
+      }
+
+      if (status) {
+        status.textContent =
+          'Введіть щонайменше 2 символи. Пошук працює по всій методичці.';
+      }
+
+      return;
+    }
+
+    searchTimer = setTimeout(function() {
+      searchAllContent(query, requestId);
+    }, 250);
+  });
+
+  clear.addEventListener(
+    'click',
+    clearSearch
+  );
+}
+
+
+function escapeHtml(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return '';
+  }
+
+  return String(value)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+
+// =====================================================
+// ПОМИЛКА
+// =====================================================
+
+function showError(message) {
+
+  document.getElementById(
+    'categories'
+  ).innerHTML = `
+
+    <div class="message error">
+
+      <strong>
+        Сталася помилка
+      </strong>
+
+      <br><br>
+
+      ${escapeHtml(message)}
+
+    </div>
+
+  `;
+}
+
+
+// =====================================================
+// ГРУПУВАННЯ КАТЕГОРІЙ
+// =====================================================
+
+function groupSectionsByCategory(sections) {
+
+  const categories = {};
+
+  sections.forEach(function(section) {
+
+    const category =
+      section['Категорія'] ||
+      'Інші матеріали';
+
+    if (!categories[category]) {
+
+      categories[category] = {
+
+        name:category,
+
+        sections:[]
+
+      };
+
+    }
+
+    categories[category]
+      .sections
+      .push(section);
+
+  });
+
+  return Object.values(categories);
+}
+
+
+// =====================================================
+// ІКОНКИ КАТЕГОРІЙ
+// =====================================================
+
+function getCategoryIcon(name) {
+
+  const icons = {
+
+    'Домедична допомога':'🩺',
+
+    'Практичні навички':'🛠️',
+
+    'Засоби зв\'язку':'📡',
+
+    'Обладнання та генератори':'⚙️',
+
+    'Інші матеріали':'📚'
+
+  };
+
+  return icons[name] || '📚';
+}
+
+
+// =====================================================
+// ПОКАЗ КАТЕГОРІЙ
+// =====================================================
+
+function showCategories(sections) {
+  const dashboard = document.getElementById('dashboardView');
+  const testView = document.getElementById('testView');
+  if (dashboard) dashboard.classList.remove('active');
+  if (testView) testView.classList.remove('active');
+
+  const categories =
+    document.getElementById(
+      'categories'
+    );
+
+  const sectionsBox =
+    document.getElementById(
+      'sections'
+    );
+
+  const content =
+    document.getElementById(
+      'content'
+    );
+
+  const pageHeading =
+    document.getElementById(
+      'pageHeading'
+    );
+
+  const safetyAlert =
+    document.getElementById(
+      'safetyAlert'
+    );
+
+  const feedbackCard = document.getElementById('feedbackCard');
+  if (feedbackCard) feedbackCard.style.display = 'none';
+  const searchPanel = document.getElementById('searchPanel');
+  if (searchPanel) searchPanel.style.display = 'block';
+
+  content.innerHTML = '';
+
+  sectionsBox.innerHTML = '';
+
+  sectionsBox.style.display =
+    'none';
+
+  categories.style.display =
+    'grid';
+
+  pageHeading.style.display =
+    'none';
+
+  safetyAlert.style.display =
+    'block';
+
+  currentNavigation.categoryName = '';
+  currentNavigation.sectionName = '';
+  setBreadcrumb('', '');
+
+  document.getElementById(
+    'mainHeading'
+  ).textContent =
+    'Оберіть напрям';
+
+  document.getElementById(
+    'mainDescription'
+  ).textContent =
+    'Оберіть категорію навчальних матеріалів.';
+
+  categories.innerHTML = '';
+
+  const usefulBack = document.createElement('button');
+  usefulBack.type = 'button';
+  usefulBack.className = 'back-button';
+  usefulBack.textContent = '← На головний екран';
+  usefulBack.style.gridColumn = '1 / -1';
+  usefulBack.addEventListener('click', showDashboard);
+  categories.appendChild(usefulBack);
+
+  const groups =
+    groupSectionsByCategory(
+      sections
+    );
+
+  groups.forEach(function(group) {
+
+    const card =
+      document.createElement(
+        'button'
+      );
+
+    card.type = 'button';
+
+    card.className =
+      'category-card';
+
+
+    const icon =
+      document.createElement(
+        'div'
+      );
+
+    icon.className =
+      'category-icon';
+
+    icon.textContent =
+      getCategoryIcon(
+        group.name
+      );
+
+    card.appendChild(icon);
+
+
+    const name =
+      document.createElement(
+        'div'
+      );
+
+    name.className =
+      'category-name';
+
+    name.textContent =
+      group.name;
+
+    card.appendChild(name);
+
+
+    const description =
+      document.createElement(
+        'div'
+      );
+
+    description.className =
+      'category-description';
+
+    description.textContent =
+      group.sections.length +
+      ' навчальних розділів';
+
+    card.appendChild(
+      description
+    );
+
+
+    card.addEventListener(
+      'click',
+      function() {
+
+        showCategory(
+          group.name,
+          group.sections
+        );
+
+      }
+    );
+
+
+    categories.appendChild(
+      card
+    );
+
+  });
+
+}
+
+
+// =====================================================
+// ПОКАЗ РОЗДІЛІВ КАТЕГОРІЇ
+// =====================================================
+
+function showCategory(
+  categoryName,
+  sections
+) {
+  const dashboard = document.getElementById('dashboardView');
+  const testView = document.getElementById('testView');
+  if (dashboard) dashboard.classList.remove('active');
+  if (testView) testView.classList.remove('active');
+
+  const categories =
+    document.getElementById(
+      'categories'
+    );
+
+  const sectionsBox =
+    document.getElementById(
+      'sections'
+    );
+
+  const content =
+    document.getElementById(
+      'content'
+    );
+
+  const pageHeading =
+    document.getElementById(
+      'pageHeading'
+    );
+
+  const safetyAlert =
+    document.getElementById(
+      'safetyAlert'
+    );
+
+  categories.style.display =
+    'none';
+
+  const feedbackCard = document.getElementById('feedbackCard');
+  if (feedbackCard) feedbackCard.style.display = 'none';
+  const searchPanel = document.getElementById('searchPanel');
+  if (searchPanel) searchPanel.style.display = 'block';
+
+  safetyAlert.style.display =
+    'none';
+
+  pageHeading.style.display =
+    'block';
+
+  currentNavigation.categoryName = categoryName;
+  currentNavigation.sectionName = '';
+  setBreadcrumb(categoryName, '');
+
+  document.getElementById(
+    'mainHeading'
+  ).textContent =
+    categoryName;
+
+  document.getElementById(
+    'mainDescription'
+  ).textContent =
+    'Оберіть навчальний розділ.';
+
+  sectionsBox.innerHTML = '';
+
+  sectionsBox.style.display =
+    'grid';
+
+
+  // НАЗАД
+
+  const back =
+    document.createElement(
+      'button'
+    );
+
+  back.type = 'button';
+
+  back.className =
+    'back-button';
+
+  back.textContent =
+    '← Назад до напрямів';
+
+  back.style.gridColumn =
+    '1 / -1';
+
+  back.addEventListener(
+    'click',
+    function() {
+
+      showCategories(
+        allSections
+      );
+
+    }
+  );
+
+  sectionsBox.appendChild(
+    back
+  );
+
+
+  sections.forEach(
+    function(section) {
+
+      const card =
+        document.createElement(
+          'button'
+        );
+
+      card.type = 'button';
+
+      card.className =
+        'section-card';
+
+
+      const icon =
+        document.createElement(
+          'div'
+        );
+
+      icon.className =
+        'section-icon';
+
+      icon.textContent =
+        section['Іконка'] ||
+        '🛡️';
+
+      card.appendChild(icon);
+
+
+      const name =
+        document.createElement(
+          'div'
+        );
+
+      name.className =
+        'section-name';
+
+      name.textContent =
+        section['Назва'] ||
+        'Без назви';
+
+      card.appendChild(name);
+
+
+      if (
+        section['Опис']
+      ) {
+
+        const description =
+          document.createElement(
+            'div'
+          );
+
+        description.className =
+          'section-description';
+
+        description.textContent =
+          section['Опис'];
+
+        card.appendChild(
+          description
+        );
+
+      }
+
+
+      card.addEventListener(
+        'click',
+        function() {
+
+          loadContent(
+            section['ID'],
+            section['Назва'],
+            section['Іконка'],
+            categoryName
+          );
+
+        }
+      );
+
+
+      sectionsBox.appendChild(
+        card
+      );
+
+    }
+  );
+
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+}
+
+
+// =====================================================
+// ГЛОБАЛЬНИЙ МАСИВ
+// =====================================================
+
+let allSections = [];
+
+
+
+// =====================================================
+// ГОЛОВНИЙ ЕКРАН ПІСЛЯ ВХОДУ
+// =====================================================
+function showDashboard(){
+  const dashboard=document.getElementById('dashboardView');
+  const testView=document.getElementById('testView');
+  const toolsView=document.getElementById('toolsView');
+  const categories=document.getElementById('categories');
+  const sections=document.getElementById('sections');
+  const content=document.getElementById('content');
+  const heading=document.getElementById('pageHeading');
+  const alert=document.getElementById('safetyAlert');
+  const feedback=document.getElementById('feedbackCard');
+  if(dashboard) dashboard.classList.add('active');
+  if(testView) testView.classList.remove('active');
+  if(toolsView) toolsView.classList.remove('active');
+  if(categories) categories.style.display='none';
+  if(sections){sections.style.display='none';sections.innerHTML='';}
+  if(content) content.innerHTML='';
+  if(heading) heading.style.display='none';
+  if(alert) alert.style.display='none';
+  if(feedback) feedback.style.display='none';
+  const search=document.getElementById('searchPanel'); if(search) search.style.display='none';
+  const breadcrumb=document.getElementById('breadcrumb'); if(breadcrumb) breadcrumb.style.display='none';
+  currentNavigation.categoryName=''; currentNavigation.sectionName=''; setBreadcrumb('','');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showUsefulInfo(){
+  const dashboard=document.getElementById('dashboardView'); const test=document.getElementById('testView'); const tools=document.getElementById('toolsView');
+  if(dashboard) dashboard.classList.remove('active'); if(test) test.classList.remove('active'); if(tools) tools.classList.remove('active');
+  showCategories(allSections);
+}
+
+function shuffleArray(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+let currentQuiz=null;
+let currentQuizTitle='Історія України';
+function orderQuizOptions(options){
+  const textOptions = options.filter(function(opt){ return !/^\s*(?:вірн\w*|всі відповіді)\b/i.test(String(opt.text||'')); });
+  const combinedOptions = options.filter(function(opt){ return /^\s*(?:вірн\w*|всі відповіді)\b/i.test(String(opt.text||'')); });
+  return shuffleArray(textOptions).concat(shuffleArray(combinedOptions));
+}
+function startQuiz(questionBank, title){
+  const dashboard=document.getElementById('dashboardView'), test=document.getElementById('testView');
+  if(dashboard) dashboard.classList.remove('active'); if(test) test.classList.add('active');
+  document.getElementById('testMenu').style.display='none';
+  document.getElementById('testQuestionView').style.display='block';
+  document.getElementById('categories').style.display='none';
+  document.getElementById('sections').style.display='none';
+  document.getElementById('content').innerHTML='';
+  document.getElementById('pageHeading').style.display='none';
+  document.getElementById('safetyAlert').style.display='none';
+  document.getElementById('feedbackCard').style.display='none';
+  document.getElementById('searchPanel').style.display='none';
+  document.getElementById('breadcrumb').style.display='none';
+  currentQuizTitle = title;
+  currentQuiz=shuffleArray(questionBank || []).slice(0,5).map(q=>({
+    ...q, options:shuffleArray(q.options), selected:null
+  }));
+  document.getElementById('testTitle').textContent=title;
+  renderQuizQuestion(0);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startHistoryTest(){ startQuiz(window.HISTORY_QUESTIONS, 'Історія України'); }
+function showTestMenu(){
+  document.getElementById('testQuestionView').style.display='none';
+  document.getElementById('testMenu').style.display='block';
+  document.getElementById('searchPanel').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderQuizQuestion(index){
+  const body=document.getElementById('testBody'), progress=document.getElementById('testProgress');
+  const q=currentQuiz[index]; if(!q) return;
+  progress.textContent=currentQuizTitle+' • питання '+(index+1)+' з '+currentQuiz.length;
+  body.innerHTML='';
+  const card=document.createElement('div'); card.className='question-card';
+  card.innerHTML='<div class="question-number">Питання '+(index+1)+'</div><div class="question-text">'+escapeHtml(q.question)+'</div>';
+  const list=document.createElement('div'); list.className='answer-list';
+  q.options.forEach(opt=>{
+    const b=document.createElement('button'); b.type='button'; b.className='answer-option'+(q.selected===opt.value?' selected':'');
+    b.textContent=opt.text;
+    b.addEventListener('click',()=>{q.selected=opt.value;renderQuizQuestion(index);});
+    list.appendChild(b);
+  });
+  card.appendChild(list);
+  const actions=document.createElement('div'); actions.className='test-actions';
+  if(index>0){const prev=document.createElement('button');prev.type='button';prev.className='test-secondary';prev.textContent='← Назад';prev.addEventListener('click',()=>renderQuizQuestion(index-1));actions.appendChild(prev);}
+  const next=document.createElement('button'); next.type='button'; next.textContent=index===currentQuiz.length-1?'ЗАВЕРШИТИ ТЕСТ':'ДАЛІ →';
+  next.disabled=q.selected===null; next.style.opacity=next.disabled?.55:1;
+  next.addEventListener('click',()=>{if(q.selected===null)return; index===currentQuiz.length-1?finishQuiz():renderQuizQuestion(index+1);});
+  actions.appendChild(next); card.appendChild(actions); body.appendChild(card);
+}
+function finishQuiz(){
+  const body=document.getElementById('testBody'), progress=document.getElementById('testProgress');
+  let score=0;
+  currentQuiz.forEach(q=>{if(q.selected===q.correct)score++;});
+  progress.textContent='Результат';
+  let html='<div class="result-summary"><div style="font-size:18px;font-weight:800;margin-bottom:8px;">'+escapeHtml(currentQuizTitle)+'</div><div class="score">'+score+' / '+currentQuiz.length+'</div><div>Правильних відповідей: '+score+'. Неправильних: '+(currentQuiz.length-score)+'.</div></div>';
+  currentQuiz.forEach((q,i)=>{
+    const correct=q.options.find(o=>o.value===q.correct);
+    const selected=q.options.find(o=>o.value===q.selected);
+    const good=q.selected===q.correct;
+    html+='<div class="result-item '+(good?'good':'bad')+'"><div class="result-question">'+(i+1)+'. '+escapeHtml(q.question)+'</div>';
+    html+='<div class="result-your">Ваша відповідь: '+escapeHtml(selected?selected.text:'не обрано')+'</div>';
+    if(!good) html+='<div class="result-correct">Правильна відповідь: '+escapeHtml(correct?correct.text:q.correctText)+'</div>';
+    html+='</div>';
+  });
+  html+='<div class="test-actions"><button id="retryTest" type="button">ПРОЙТИ ЩЕ РАЗ</button><button id="backTestMenu" class="test-secondary" type="button">← ДО ТЕСТУВАННЯ</button></div>';
+  body.innerHTML=html;
+  document.getElementById('retryTest').addEventListener('click',startHistoryTest);
+  document.getElementById('backTestMenu').addEventListener('click',showTestMenu);
+}
+function setupUkraineFacts(){
+  let bag=shuffleArray(window.UKRAINE_FACTS||[]);
+  let index=0;
+  const overlay=document.getElementById('factOverlay'), cat=document.getElementById('factCategory'), text=document.getElementById('factText'), source=document.getElementById('factSource');
+  function showFact(){
+    if(index>=bag.length){bag=shuffleArray(window.UKRAINE_FACTS||[]);index=0;}
+    const f=bag[index++]; if(!f)return;
+    cat.textContent=''; cat.style.display='none'; text.textContent=f.text; source.textContent=''; source.style.display='none';
+    overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+  }
+  document.getElementById('ukraineFactButton').addEventListener('click',showFact);
+  document.getElementById('factNext').addEventListener('click',showFact);
+  document.getElementById('factClose').addEventListener('click',()=>{overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');});
+  overlay.addEventListener('click',e=>{if(e.target===overlay){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');}});
+}
+function setupDashboard(){
+  document.getElementById('usefulInfoBtn').addEventListener('click',showUsefulInfo);
+  document.getElementById('testingBtn').addEventListener('click',showTestingMenu);
+  document.getElementById('toolsBtn').addEventListener('click',showToolsMenu);
+  document.getElementById('backFromTools').addEventListener('click',showDashboard);
+  document.getElementById('calculatorBtn').addEventListener('click',showCalculator);
+  document.getElementById('calendarBtn').addEventListener('click',showCalendar);
+  setupCoordinates();
+  setupCompass();
+  setupWeather();
+  document.getElementById('backToToolsMenuFromCalc').addEventListener('click',showToolsMenu);
+  document.getElementById('backToToolsMenuFromCalendar').addEventListener('click',showToolsMenu);
+  setupCalculator(); setupCalendar();
+  document.getElementById('feedbackBtnTop').addEventListener('click',()=>document.getElementById('feedbackCard').click());
+  document.getElementById('backFromTesting').addEventListener('click',showDashboard);
+  document.getElementById('historyTestBtn').addEventListener('click',startHistoryTest);
+  document.getElementById('backToTestMenu').addEventListener('click',showTestMenu);
+  setupUkraineFacts();
+}
+
+function showToolsMenu(){
+  document.getElementById('dashboardView').classList.remove('active');
+  document.getElementById('testView').classList.remove('active');
+  document.getElementById('toolsView').classList.add('active');
+  document.getElementById('toolsMenu').style.display='grid';
+  document.getElementById('calculatorPanel').classList.remove('active');
+  document.getElementById('calendarPanel').classList.remove('active');
+  document.getElementById('coordinatesPanel').classList.remove('active');
+  document.getElementById('compassPanel').classList.remove('active');
+  document.getElementById('searchPanel').style.display='none'; document.getElementById('categories').style.display='none'; document.getElementById('sections').style.display='none'; document.getElementById('content').innerHTML=''; document.getElementById('pageHeading').style.display='none'; document.getElementById('safetyAlert').style.display='none'; document.getElementById('feedbackCard').style.display='none'; document.getElementById('breadcrumb').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showCalculator(){showToolsMenu();document.getElementById('toolsMenu').style.display='none';document.getElementById('calculatorPanel').classList.add('active');}
+function showCalendar(){showToolsMenu();document.getElementById('toolsMenu').style.display='none';document.getElementById('calendarPanel').classList.add('active');renderCalendar();}
+function setupCalculator(){
+  const display=document.getElementById('calcDisplay'); let expr='';
+  document.querySelectorAll('[data-calc]').forEach(btn=>btn.addEventListener('click',()=>{
+    const v=btn.dataset.calc;
+    if(v==='clear'){expr='';display.value='0';return;}
+    if(v==='back'){expr=expr.slice(0,-1);display.value=expr||'0';return;}
+    if(v==='='){try{if(!expr)return; if(!/^[0-9+\-*/.() ]+$/.test(expr))throw 0; const result=Function('"use strict";return ('+expr+')')(); if(!Number.isFinite(result))throw 0; expr=String(Math.round(result*100000000)/100000000);display.value=expr;}catch(e){display.value='Помилка';expr='';}return;}
+    if(v==='.'){
+      const part=expr.split(/[+\-*/]/).pop(); if(part.includes('.'))return;
+    }
+    expr += v; display.value=expr;
+  }));
+}
+const UK_HOLIDAYS_2026={
+  '2026-01-01':'Новий рік','2026-01-22':'День Соборності України','2026-02-26':'День спротиву окупації Криму та Севастополя','2026-03-14':'День українського добровольця','2026-03-26':'День Національної гвардії України','2026-04-12':'Великдень','2026-05-08':'День пам’яті та перемоги над нацизмом у Другій світовій війні','2026-06-28':'День Конституції України','2026-07-04':'День Національної поліції України','2026-07-15':'День Української Державності','2026-08-24':'День Незалежності України','2026-10-01':'День захисників і захисниць України','2026-11-21':'День Гідності та Свободи','2026-12-25':'Різдво Христове'
+};
+let calendarDate=new Date();
+function pad2(n){return String(n).padStart(2,'0');}
+function isoDate(y,m,d){return y+'-'+pad2(m+1)+'-'+pad2(d);}
+function renderCalendar(){
+  const y=calendarDate.getFullYear(), m=calendarDate.getMonth();
+  const monthNames=['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
+  document.getElementById('calendarMonth').textContent=monthNames[m]+' '+y;
+  const grid=document.getElementById('calendarGrid'); grid.innerHTML='';
+  ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'].forEach(x=>{const el=document.createElement('div');el.className='cal-weekday';el.textContent=x;grid.appendChild(el);});
+  const first=new Date(y,m,1), offset=(first.getDay()+6)%7, days=new Date(y,m+1,0).getDate(), prevDays=new Date(y,m,0).getDate();
+  for(let i=0;i<42;i++){
+    const cell=document.createElement('div'); cell.className='cal-day'; let day, cm=m, cy=y, muted=false;
+    if(i<offset){day=prevDays-offset+i+1;cm=m-1;if(cm<0){cm=11;cy--;}muted=true;} else if(i>=offset+days){day=i-offset-days+1;cm=m+1;if(cm>11){cm=0;cy++;}muted=true;} else day=i-offset+1;
+    const key=isoDate(cy,cm,day), holiday=UK_HOLIDAYS_2026[key];
+    if(muted)cell.classList.add('muted'); if(holiday)cell.classList.add('holiday');
+    const now=new Date(); if(key===isoDate(now.getFullYear(),now.getMonth(),now.getDate()))cell.classList.add('today');
+    cell.innerHTML='<div class="cal-num">'+day+'</div>'+(holiday?'<span class="cal-holiday">'+holiday+'</span>':''); grid.appendChild(cell);
+  }
+  const list=document.getElementById('holidayList'); const items=Object.entries(UK_HOLIDAYS_2026).filter(([k])=>k.startsWith(y+'-')).sort();
+  list.innerHTML=items.length?'<div style="font-weight:900;color:var(--navy);margin-bottom:6px;">Свята цього року</div>'+items.map(([k,v])=>'<div class="holiday-item"><span class="holiday-date">'+k.slice(8,10)+'.'+k.slice(5,7)+'.'+y+'</span> — <span class="holiday-name">'+v+'</span></div>').join(''):'<div class="holiday-name">Свята для цього року ще не додані.</div>';
+}
+function setupCalendar(){
+  document.getElementById('prevMonth').addEventListener('click',()=>{calendarDate.setMonth(calendarDate.getMonth()-1);renderCalendar();});
+  document.getElementById('nextMonth').addEventListener('click',()=>{calendarDate.setMonth(calendarDate.getMonth()+1);renderCalendar();});
+  document.getElementById('calendarToday').addEventListener('click',()=>{calendarDate=new Date();renderCalendar();});
+}
+
+function showCompass(){showToolsMenu();document.getElementById('toolsMenu').style.display='none';document.getElementById('compassPanel').classList.add('active');}
+function showCoordinates(){showToolsMenu();document.getElementById('toolsMenu').style.display='none';document.getElementById('coordinatesPanel').classList.add('active');setCoordTab('my');}
+function setCoordTab(tab){
+  const tabs={my:'coordMyBtn',convert:'coordConvertBtn',saved:'coordSavedBtn'};
+  const panels={my:'coordMyPanel',convert:'coordConvertPanel',saved:'coordSavedPanel'};
+  Object.keys(tabs).forEach(k=>document.getElementById(tabs[k]).classList.toggle('active',k===tab));
+  Object.keys(panels).forEach(k=>document.getElementById(panels[k]).classList.toggle('active',k===tab));
+  if(tab==='saved')renderSavedPoints();
+}
+function setCoordStatus(text){document.getElementById('coordStatus').textContent=text;}
+function dmsFromDecimal(value,isLat){
+  const abs=Math.abs(value), deg=Math.floor(abs), minFloat=(abs-deg)*60, min=Math.floor(minFloat), sec=(minFloat-min)*60;
+  const dir=isLat?(value>=0?'N':'S'):(value>=0?'E':'W');
+  return deg+'°'+String(min).padStart(2,'0')+'′'+sec.toFixed(2).padStart(5,'0')+'″ '+dir;
+}
+function utmFromLatLon(lat,lon){
+  const a=6378137.0, eccSquared=0.00669438, k0=0.9996, eccPrimeSquared=eccSquared/(1-eccSquared);
+  const latRad=lat*Math.PI/180, lonRad=lon*Math.PI/180;
+  let zone=Math.floor((lon+180)/6)+1;
+  if(lat>=56&&lat<64&&lon>=3&&lon<12)zone=32;
+  if(lat>=72&&lat<84){if(lon<9)zone=31;else if(lon<21)zone=33;else if(lon<33)zone=35;else if(lon<42)zone=37;}
+  const lonOrigin=(zone-1)*6-180+3, lonOriginRad=lonOrigin*Math.PI/180;
+  const N=a/Math.sqrt(1-eccSquared*Math.sin(latRad)**2), T=Math.tan(latRad)**2, C=eccPrimeSquared*Math.cos(latRad)**2, A=Math.cos(latRad)*(lonRad-lonOriginRad);
+  const M=a*((1-eccSquared/4-3*eccSquared**2/64-5*eccSquared**3/256)*latRad-(3*eccSquared/8+3*eccSquared**2/32+45*eccSquared**3/1024)*Math.sin(2*latRad)+(15*eccSquared**2/256+45*eccSquared**3/1024)*Math.sin(4*latRad)-(35*eccSquared**3/3072)*Math.sin(6*latRad));
+  let easting=k0*N*(A+(1-T+C)*A**3/6+(5-18*T+T*T+72*C-58*eccPrimeSquared)*A**5/120)+500000;
+  let northing=k0*(M+N*Math.tan(latRad)*(A*A/2+(5-T+9*C+4*C*C)*A**4/24+(61-58*T+T*T+600*C-330*eccPrimeSquared)*A**6/720));
+  if(lat<0)northing+=10000000;
+  return {zone,easting,northing};
+}
+function latitudeBand(lat){const letters='CDEFGHJKLMNPQRSTUVWXX';return letters[Math.floor((lat+80)/8)];}
+function mgrsFromLatLon(lat,lon,precision=5){
+  if(!Number.isFinite(lat)||!Number.isFinite(lon)||lat<-80||lat>84||lon<-180||lon>180)return '';
+  const u=utmFromLatLon(lat,lon), band=latitudeBand(lat), sets=['ABCDEFGH','JKLMNPQR','STUVWXYZ'];
+  const colSet=sets[(u.zone-1)%3], colIndex=Math.floor(u.easting/100000)-1;
+  const eLetter=colSet[colIndex];
+  const rowLetters='ABCDEFGHJKLMNPQRSTUV';
+  const rowOffset=(u.zone%2===0)?5:0;
+  let rowIndex=(Math.floor(u.northing/100000)+rowOffset)%20;
+  const nLetter=rowLetters[rowIndex];
+  const scale=Math.pow(10,5-precision), e=Math.floor((u.easting%100000)/scale).toString().padStart(precision,'0'), n=Math.floor((u.northing%100000)/scale).toString().padStart(precision,'0');
+  return u.zone+band+' '+eLetter+nLetter+' '+e+' '+n;
+}
+function mgrsToLatLon(input){
+  const s=String(input||'').trim().toUpperCase().replace(/\s+/g,' ');
+  const m=s.match(/^(\d{1,2})([C-HJ-NP-X])\s*([A-HJ-NP-Z]{2})\s*(\d+)\s*(\d+)$/);
+  if(!m)throw new Error('Невірний формат MGRS. Приклад: 34U FB 12345 67890');
+  const zone=Number(m[1]), band=m[2], pair=m[3], ed=m[4], nd=m[5];
+  if(zone<1||zone>60||ed.length!==nd.length||ed.length<1||ed.length>5)throw new Error('Невірні цифри MGRS.');
+  const sets=['ABCDEFGH','JKLMNPQR','STUVWXYZ'], colSet=sets[(zone-1)%3], eIndex=colSet.indexOf(pair[0]);
+  if(eIndex<0)throw new Error('Невірна easting-літера MGRS.');
+  let easting=(eIndex+1)*100000;
+  const rowLetters='ABCDEFGHJKLMNPQRSTUV', rowIndex=rowLetters.indexOf(pair[1]);
+  if(rowIndex<0)throw new Error('Невірна northing-літера MGRS.');
+  const rowOffset=(zone%2===0)?5:0;
+  let northing=((rowIndex-rowOffset+20)%20)*100000;
+  const precision=ed.length, scale=Math.pow(10,5-precision);
+  easting+=Number(ed)*scale; northing+=Number(nd)*scale;
+  const bands='CDEFGHJKLMNPQRSTUVWXX', bandIndex=bands.indexOf(band);
+  if(bandIndex<0)throw new Error('Невірна зона MGRS.');
+  const minNorth=(bandIndex*8-80)*Math.PI/180;
+  const minUtm=utmFromLatLon((bandIndex*8-80)+0.1,(zone-1)*6-180+3);
+  const targetMinNorth=minUtm.northing;
+  while(northing<targetMinNorth)northing+=2000000;
+  const a=6378137.0,eccSquared=0.00669438,k0=0.9996,eccPrimeSquared=eccSquared/(1-eccSquared),e1=(1-Math.sqrt(1-eccSquared))/(1+Math.sqrt(1-eccSquared));
+  const M=northing/k0, mu=M/(a*(1-eccSquared/4-3*eccSquared**2/64-5*eccSquared**3/256));
+  const phi1Rad=mu+(3*e1/2-27*e1**3/32)*Math.sin(2*mu)+(21*e1**2/16-55*e1**4/32)*Math.sin(4*mu)+(151*e1**3/96)*Math.sin(6*mu)+(1097*e1**4/512)*Math.sin(8*mu);
+  const N1=a/Math.sqrt(1-eccSquared*Math.sin(phi1Rad)**2), T1=Math.tan(phi1Rad)**2,C1=eccPrimeSquared*Math.cos(phi1Rad)**2,R1=a*(1-eccSquared)/Math.pow(1-eccSquared*Math.sin(phi1Rad)**2,1.5),D=(easting-500000)/(N1*k0);
+  const lat=phi1Rad-(N1*Math.tan(phi1Rad)/R1)*(D**2/2-(5+3*T1+10*C1-4*C1**2-9*eccPrimeSquared)*D**4/24+(61+90*T1+298*C1+45*T1**2-252*eccPrimeSquared-3*C1**2)*D**6/720);
+  const lonOrigin=(zone-1)*6-180+3;
+  const lon=(lonOrigin*Math.PI/180+(D-(1+2*T1+C1)*D**3/6+(5-2*C1+28*T1-3*C1**2+8*eccPrimeSquared+24*T1**2)*D**5/120)/Math.cos(phi1Rad))*180/Math.PI;
+  const latDeg=lat*180/Math.PI; return {lat:latDeg,lon};
+}
+function currentCoordText(){const lat=document.getElementById('coordLat').textContent,lon=document.getElementById('coordLon').textContent;return (lat==='—'||lon==='—')?'':lat+', '+lon;}
+function copyText(text){if(!text)return Promise.reject();if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(text);const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();return Promise.resolve();}
+let currentLocation=null;
+function renderLocation(pos){
+  currentLocation=pos; const c=pos.coords, lat=c.latitude, lon=c.longitude;
+  document.getElementById('coordLat').textContent=lat.toFixed(6); document.getElementById('coordLon').textContent=lon.toFixed(6); document.getElementById('coordMgrs').textContent=mgrsFromLatLon(lat,lon,5); document.getElementById('coordAccuracy').textContent=Number.isFinite(c.accuracy)?'±'+Math.round(c.accuracy)+' м':'—'; document.getElementById('coordAltitude').textContent=Number.isFinite(c.altitude)?Math.round(c.altitude)+' м':'Не надано'; document.getElementById('coordUpdated').textContent=new Date().toLocaleTimeString('uk-UA'); setCoordStatus('Координати отримано. GPS може уточнювати точність після кількох оновлень.');
+}
+function getLocation(){
+  if(!navigator.geolocation){setCoordStatus('Цей браузер не підтримує геолокацію.');return;}
+  setCoordStatus('Запитуємо доступ до місцезнаходження…');
+  navigator.geolocation.getCurrentPosition(renderLocation,function(err){const msg=err.code===1?'Доступ до геолокації заборонено. Дозвольте його в налаштуваннях браузера.':err.code===2?'Місцезнаходження недоступне. Перевірте GPS.':'Не вдалося отримати координати. Спробуйте ще раз.';setCoordStatus(msg);},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+function openGoogle(lat,lon){if(!Number.isFinite(lat)||!Number.isFinite(lon))return;window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(lat+','+lon),'_blank');}
+function saveCurrentPoint(){if(!currentLocation){setCoordStatus('Спочатку отримайте координати.');return;}const c=currentLocation.coords;const name=prompt('Назва точки:','Нова точка');if(!name)return;const arr=JSON.parse(localStorage.getItem('pidtrymka_saved_points_v1')||'[]');arr.unshift({id:Date.now(),name:name.trim(),lat:c.latitude,lon:c.longitude,mgrs:mgrsFromLatLon(c.latitude,c.longitude,5),created:new Date().toISOString()});localStorage.setItem('pidtrymka_saved_points_v1',JSON.stringify(arr.slice(0,100)));setCoordStatus('Точку «'+name.trim()+'» збережено на цьому пристрої.');}
+function renderSavedPoints(){const box=document.getElementById('savedPointsList'),arr=JSON.parse(localStorage.getItem('pidtrymka_saved_points_v1')||'[]');if(!arr.length){box.innerHTML='<div class="empty-saved">Поки що немає збережених точок.</div>';return;}box.innerHTML=arr.map(p=>'<div class="saved-point"><div class="saved-point-title">'+escapeHtml(p.name)+'</div><div class="saved-point-coords">GPS: '+p.lat.toFixed(6)+', '+p.lon.toFixed(6)+'<br>MGRS: '+escapeHtml(p.mgrs)+'</div><div class="saved-point-actions"><button type="button" data-open-point="'+p.id+'">🗺️ Карта</button><button type="button" data-copy-point="'+p.id+'">📋 Копіювати</button><button type="button" data-delete-point="'+p.id+'">🗑️ Видалити</button></div></div>').join('');box.querySelectorAll('[data-open-point]').forEach(b=>b.addEventListener('click',()=>{const p=arr.find(x=>x.id===Number(b.dataset.openPoint));if(p)openGoogle(p.lat,p.lon);}));box.querySelectorAll('[data-copy-point]').forEach(b=>b.addEventListener('click',()=>{const p=arr.find(x=>x.id===Number(b.dataset.copyPoint));if(p)copyText('GPS: '+p.lat.toFixed(6)+', '+p.lon.toFixed(6)+'\nMGRS: '+p.mgrs).then(()=>alert('Координати скопійовано.'));}));box.querySelectorAll('[data-delete-point]').forEach(b=>b.addEventListener('click',()=>{const id=Number(b.dataset.deletePoint);const next=arr.filter(x=>x.id!==id);localStorage.setItem('pidtrymka_saved_points_v1',JSON.stringify(next));renderSavedPoints();}));}
+function setupCoordinates(){
+  document.getElementById('coordinatesBtn').addEventListener('click',showCoordinates); document.getElementById('backToToolsMenuFromCoordinates').addEventListener('click',showToolsMenu);
+  document.getElementById('coordMyBtn').addEventListener('click',()=>setCoordTab('my')); document.getElementById('coordConvertBtn').addEventListener('click',()=>setCoordTab('convert')); document.getElementById('coordSavedBtn').addEventListener('click',()=>setCoordTab('saved'));
+  document.getElementById('getLocationBtn').addEventListener('click',getLocation); document.getElementById('refreshLocationBtn').addEventListener('click',getLocation);
+  document.getElementById('copyGpsBtn').addEventListener('click',()=>{const t=currentCoordText();if(!t)return setCoordStatus('Спочатку отримайте координати.');copyText(t).then(()=>setCoordStatus('GPS-координати скопійовано.'));});
+  document.getElementById('copyMgrsBtn').addEventListener('click',()=>{const t=document.getElementById('coordMgrs').textContent;if(t==='—')return setCoordStatus('Спочатку отримайте координати.');copyText(t).then(()=>setCoordStatus('MGRS скопійовано.'));});
+  document.getElementById('shareCoordsBtn').addEventListener('click',()=>{if(!currentLocation)return setCoordStatus('Спочатку отримайте координати.');const c=currentLocation.coords,text='📍 Координати\nGPS: '+c.latitude.toFixed(6)+', '+c.longitude.toFixed(6)+'\nMGRS: '+mgrsFromLatLon(c.latitude,c.longitude,5);if(navigator.share)navigator.share({text:text}).catch(()=>{});else copyText(text).then(()=>setCoordStatus('Координати скопійовано — можна вставити у повідомлення.'));});
+  document.getElementById('openGoogleMapsBtn').addEventListener('click',()=>{if(!currentLocation)return setCoordStatus('Спочатку отримайте координати.');openGoogle(currentLocation.coords.latitude,currentLocation.coords.longitude);});
+  document.getElementById('saveCurrentPointBtn').addEventListener('click',saveCurrentPoint);
+  document.getElementById('convertGpsBtn').addEventListener('click',()=>{const lat=Number(document.getElementById('convertLat').value),lon=Number(document.getElementById('convertLon').value);if(!Number.isFinite(lat)||!Number.isFinite(lon)||lat<-90||lat>90||lon<-180||lon>180){document.getElementById('convertDms').textContent='Помилка';document.getElementById('convertMgrs').textContent='Перевірте координати';return;}document.getElementById('convertDms').textContent=dmsFromDecimal(lat,true)+' | '+dmsFromDecimal(lon,false);document.getElementById('convertMgrs').textContent=mgrsFromLatLon(lat,lon,5);document.getElementById('convertGoogleMapsBtn').dataset.lat=lat;document.getElementById('convertGoogleMapsBtn').dataset.lon=lon;});
+  document.getElementById('convertGoogleMapsBtn').addEventListener('click',function(){openGoogle(Number(this.dataset.lat),Number(this.dataset.lon));});
+  document.getElementById('convertMgrsBtn').addEventListener('click',()=>{try{const p=mgrsToLatLon(document.getElementById('mgrsInput').value);document.getElementById('mgrsConvertResult').textContent='GPS: '+p.lat.toFixed(6)+', '+p.lon.toFixed(6);document.getElementById('convertLat').value=p.lat.toFixed(6);document.getElementById('convertLon').value=p.lon.toFixed(6);}catch(e){document.getElementById('mgrsConvertResult').textContent=e.message;}});
+}
+
+let compassEnabled=false;
+let lastCompassHeading=null;
+function setCompassStatus(text){const el=document.getElementById('compassStatus');if(el)el.textContent=text;}
+function directionFromHeading(h){const dirs=['ПІВНІЧ','ПІВНІЧНИЙ СХІД','СХІД','ПІВДЕННИЙ СХІД','ПІВДЕНЬ','ПІВДЕННИЙ ЗАХІД','ЗАХІД','ПІВНІЧНИЙ ЗАХІД'];return dirs[Math.round(h/45)%8];}
+function updateCompass(heading){if(!Number.isFinite(heading))return;heading=((heading%360)+360)%360;lastCompassHeading=heading;document.getElementById('compassDegree').textContent=Math.round(heading)+'°';document.getElementById('compassDirection').textContent=directionFromHeading(heading);const ring=document.getElementById('compassRing');if(ring)ring.style.transform='rotate('+(-heading)+'deg)';}
+function onOrientation(e){let heading=null;if(typeof e.webkitCompassHeading==='number'&&e.webkitCompassHeading>=0)heading=e.webkitCompassHeading;else if(typeof e.alpha==='number')heading=360-e.alpha;if(heading!==null)updateCompass(heading);}
+async function enableCompass(){
+  if(!window.DeviceOrientationEvent){setCompassStatus('Цей браузер не підтримує датчик орієнтації для компаса.');return;}
+  try{
+    if(typeof DeviceOrientationEvent.requestPermission==='function'){const permission=await DeviceOrientationEvent.requestPermission();if(permission!=='granted'){setCompassStatus('Доступ до датчиків заборонено. Дозвольте його в налаштуваннях браузера.');return;}}
+    window.addEventListener('deviceorientationabsolute',onOrientation,true);
+    window.addEventListener('deviceorientation',onOrientation,true);
+    compassEnabled=true;
+    setCompassStatus('Компас увімкнено. Поверніть телефон і перевірте напрямок.');
+  }catch(err){setCompassStatus('Не вдалося отримати доступ до датчика орієнтації. Перевірте дозволи браузера.');}
+}
+function calibrateCompass(){setCompassStatus('Калібрування: повільно повертайте телефон у різних напрямках, тримаючи його горизонтально.');}
+function setupCompass(){
+  document.getElementById('compassBtn').addEventListener('click',showCompass);
+  document.getElementById('backToToolsMenuFromCompass').addEventListener('click',showToolsMenu);
+  document.getElementById('enableCompassBtn').addEventListener('click',enableCompass);
+  document.getElementById('calibrateCompassBtn').addEventListener('click',calibrateCompass);
+}
+
+
+let lastWeatherLocation=null;
+const weatherCodeMap={0:['☀️','Ясно'],1:['🌤️','Переважно ясно'],2:['⛅','Мінлива хмарність'],3:['☁️','Хмарно'],45:['🌫️','Туман'],48:['🌫️','Іній/туман'],51:['🌦️','Легка мряка'],53:['🌦️','Мряка'],55:['🌧️','Сильна мряка'],61:['🌧️','Невеликий дощ'],63:['🌧️','Дощ'],65:['🌧️','Сильний дощ'],71:['🌨️','Невеликий сніг'],73:['🌨️','Сніг'],75:['❄️','Сильний сніг'],80:['🌦️','Зливи'],81:['🌧️','Зливи'],82:['⛈️','Сильні зливи'],95:['⛈️','Гроза'],96:['⛈️','Гроза з градом'],99:['⛈️','Сильна гроза']};
+function weatherDir(d){if(!Number.isFinite(d))return '—';const a=['Пн','ПнСх','Сх','ПдСх','Пд','ПдЗх','Зх','ПнЗх'];return a[Math.round(d/45)%8];}
+function weatherDaylight(sunrise,sunset){if(!sunrise||!sunset)return '—';const a=new Date(sunrise),b=new Date(sunset),m=Math.max(0,b-a)/60000;return Math.floor(m/60)+' год '+Math.round(m%60)+' хв';}
+function weatherFmtTime(t){try{return new Date(t).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});}catch(e){return t;}}
+function weatherFmtDate(t){try{return new Date(t+'T12:00:00').toLocaleDateString('uk-UA',{weekday:'short',day:'2-digit',month:'2-digit'});}catch(e){return t;}}
+function weatherSetStatus(t){const e=document.getElementById('weatherStatus');if(e)e.textContent=t;}
+async function weatherFetch(lat,lon,label){
+  weatherSetStatus('⏳ Завантажую прогноз для '+label+'…');
+  const url='https://api.open-meteo.com/v1/forecast?latitude='+encodeURIComponent(lat)+'&longitude='+encodeURIComponent(lon)+'&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m,visibility&hourly=temperature_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,visibility,uv_index&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,precipitation_probability_max,weather_code,sunrise,sunset,sunshine_duration&timezone=auto&forecast_days=7';
+  try{const r=await fetch(url);if(!r.ok)throw new Error('HTTP '+r.status);const d=await r.json();lastWeatherLocation={lat,lon,label,data:d};localStorage.setItem('pidtrymka_last_weather_v1',JSON.stringify({lat,lon,label,data:d,savedAt:Date.now()}));weatherRender(d,label);weatherSetStatus('Оновлено: '+new Date().toLocaleString('uk-UA'));}
+  catch(e){const cached=JSON.parse(localStorage.getItem('pidtrymka_last_weather_v1')||'null');if(cached&&cached.data){lastWeatherLocation=cached;weatherRender(cached.data,cached.label);weatherSetStatus('⚠️ Немає з’єднання. Показано останню збережену погоду: '+new Date(cached.savedAt).toLocaleString('uk-UA'));}else weatherSetStatus('❌ Не вдалося завантажити погоду. Перевірте інтернет.');}
+}
+function weatherRender(d,label){const c=d.current,h=d.hourly,dy=d.daily,code=weatherCodeMap[c.weather_code]||['🌡️','Невідомо'];document.getElementById('weatherContent').style.display='block';document.getElementById('weatherTemp').textContent=Math.round(c.temperature_2m)+'°C';document.getElementById('weatherFeels').textContent='Відчувається як '+Math.round(c.apparent_temperature)+'°C';document.getElementById('weatherDesc').textContent=code[1];document.getElementById('weatherIcon').textContent=code[0];document.getElementById('weatherWind').textContent=Math.round(c.wind_speed_10m)+' км/год';document.getElementById('weatherWindDir').textContent=weatherDir(c.wind_direction_10m)+' ('+Math.round(c.wind_direction_10m)+'°)';document.getElementById('weatherGust').textContent=Math.round(c.wind_gusts_10m)+' км/год';document.getElementById('weatherHumidity').textContent=Math.round(c.relative_humidity_2m)+'%';document.getElementById('weatherPrecip').textContent=Number(c.precipitation||0).toFixed(1)+' мм';document.getElementById('weatherVisibility').textContent=(Number(c.visibility||0)/1000).toFixed(1)+' км';document.getElementById('weatherPressure').textContent=Math.round(c.pressure_msl)+' hPa';
+  let idx=0;while(idx<h.time.length&&new Date(h.time[idx])<new Date())idx++;document.getElementById('weatherUv').textContent=h.uv_index&&h.uv_index[idx]!=null?Math.round(h.uv_index[idx]):'—';
+  document.getElementById('weatherSunrise').textContent=weatherFmtTime(dy.sunrise[0]);document.getElementById('weatherSunset').textContent=weatherFmtTime(dy.sunset[0]);document.getElementById('weatherDaylight').textContent=weatherDaylight(dy.sunrise[0],dy.sunset[0]);
+  const hb=[];for(let i=idx;i<Math.min(idx+12,h.time.length);i++){const cc=weatherCodeMap[h.weather_code[i]]||['🌡️',''];hb.push('<div class="weather-hour"><strong>'+weatherFmtTime(h.time[i])+'</strong><div style="font-size:26px">'+cc[0]+'</div><div>'+Math.round(h.temperature_2m[i])+'°</div><small>'+Math.round(h.wind_speed_10m[i])+' км/год</small><br><small>'+Math.round(h.precipitation_probability[i]||0)+'% опадів</small></div>');}document.getElementById('weatherHourly').innerHTML=hb.join('');
+  const db=[];for(let i=0;i<dy.time.length;i++){const cc=weatherCodeMap[dy.weather_code[i]]||['🌡️',''];db.push('<div class="weather-day"><strong>'+weatherFmtDate(dy.time[i])+'</strong><div style="font-size:25px">'+cc[0]+'</div><div>'+Math.round(dy.temperature_2m_max[i])+'° / '+Math.round(dy.temperature_2m_min[i])+'°</div><small>'+cc[1]+'</small><br><small>Опади: '+Math.round(dy.precipitation_probability_max[i]||0)+'%</small><br><small>☔ '+Number(dy.precipitation_sum[i]||0).toFixed(1)+' мм</small></div>');}document.getElementById('weatherDaily').innerHTML=db.join('');
+  let alerts=[];const nextG=Math.max(...h.wind_gusts_10m.slice(idx,idx+24));const nextP=Math.max(...(h.precipitation_probability||[]).slice(idx,idx+24));const nextMin=Math.min(...h.temperature_2m.slice(idx,idx+24));if(nextG>=45)alerts.push('💨 Пориви вітру до '+Math.round(nextG)+' км/год');if(nextP>=70)alerts.push('🌧️ Ймовірність опадів до '+Math.round(nextP)+'%');if(nextMin<=0)alerts.push('🥶 Температура може опуститися до '+Math.round(nextMin)+'°C');document.getElementById('weatherAlerts').textContent=alerts.length?alerts.join(' • '):'Небезпечних умов за простими порогами не виявлено.';
+  let field='🟢 Хороші умови';if(nextG>=45||nextP>=70||nextMin<=0)field='🔴 Несприятливі умови';else if(nextG>=30||nextP>=40||nextMin<=5)field='🟡 Потрібна увага';document.getElementById('weatherField').textContent=field;
+}
+function showWeather(){showToolsMenu();document.getElementById('toolsMenu').style.display='none';document.getElementById('weatherPanel').classList.add('active');}
+function weatherUseLocation(){if(!navigator.geolocation){weatherSetStatus('Цей браузер не підтримує геолокацію.');return;}weatherSetStatus('📍 Запитую місцезнаходження…');navigator.geolocation.getCurrentPosition(p=>weatherFetch(p.coords.latitude,p.coords.longitude,'Моє місцезнаходження'),e=>weatherSetStatus('❌ Не вдалося отримати місцезнаходження. Дозвольте доступ до GPS.'),{enableHighAccuracy:true,timeout:15000,maximumAge:300000});}
+async function weatherFindCity(){const q=document.getElementById('weatherCityInput').value.trim();if(!q)return weatherSetStatus('Введіть назву міста.');weatherSetStatus('🔎 Шукаю місто…');try{const r=await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=1&language=uk&format=json');if(!r.ok)throw new Error();const d=await r.json();if(!d.results||!d.results.length)return weatherSetStatus('Місто не знайдено.');const x=d.results[0];weatherFetch(x.latitude,x.longitude,[x.name,x.country_code].filter(Boolean).join(', '));}catch(e){weatherSetStatus('❌ Не вдалося знайти місто. Перевірте інтернет.');}}
+function setupWeather(){document.getElementById('weatherBtn').addEventListener('click',showWeather);document.getElementById('backToToolsMenuFromWeather').addEventListener('click',showToolsMenu);document.getElementById('weatherMyLocationBtn').addEventListener('click',weatherUseLocation);document.getElementById('weatherCityBtn').addEventListener('click',weatherFindCity);document.getElementById('weatherRefreshBtn').addEventListener('click',()=>{if(lastWeatherLocation)weatherFetch(lastWeatherLocation.lat,lastWeatherLocation.lon,lastWeatherLocation.label);else weatherUseLocation();});document.getElementById('weatherCityInput').addEventListener('keydown',e=>{if(e.key==='Enter')weatherFindCity();});}
+
+function showTestingMenu(){
+  const dashboard=document.getElementById('dashboardView');
+  const test=document.getElementById('testView'); const tools=document.getElementById('toolsView');
+  if(dashboard) dashboard.classList.remove('active');
+  if(test) test.classList.add('active'); if(tools) tools.classList.remove('active');
+  document.getElementById('testMenu').style.display='block';
+  document.getElementById('testQuestionView').style.display='none';
+  document.getElementById('categories').style.display='none';
+  document.getElementById('sections').style.display='none';
+  document.getElementById('content').innerHTML='';
+  document.getElementById('pageHeading').style.display='none';
+  document.getElementById('safetyAlert').style.display='none';
+  document.getElementById('feedbackCard').style.display='none';
+  document.getElementById('searchPanel').style.display='none';
+  document.getElementById('breadcrumb').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// =====================================================
+// ЗАВАНТАЖЕННЯ РОЗДІЛІВ
+// =====================================================
+
+function loadSections() {
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(sections) {
+
+        allSections =
+          sections || [];
+
+        if (
+          allSections.length === 0
+        ) {
+
+          showError(
+            'Немає активних розділів.'
+          );
+
+          return;
+        }
+
+        showDashboard();
+
+      }
+    )
+
+    .withFailureHandler(
+      function(error) {
+
+        showError(
+          error &&
+          error.message
+            ? error.message
+            : 'Не вдалося завантажити розділи.'
+        );
+
+      }
+    )
+
+    .getSections();
+
+}
+
+
+// =====================================================
+// ГРУПУВАННЯ КРОКІВ
+// =====================================================
+
+function groupBySteps(items) {
+
+  const groups = [];
+
+  const map = {};
+
+  items.forEach(function(item) {
+
+    const step =
+      String(
+        item['Крок'] || ''
+      ).trim();
+
+    if (!map[step]) {
+
+      map[step] = {
+
+        step:step,
+
+        items:[]
+
+      };
+
+      groups.push(
+        map[step]
+      );
+
+    }
+
+    map[step].items.push(
+      item
+    );
+
+  });
+
+  return groups;
+}
+
+
+// =====================================================
+// НАЗВА КРОКУ
+// =====================================================
+
+function getStepTitle(group) {
+
+  if (
+    group &&
+    group.items &&
+    group.items.length
+  ) {
+
+    const first =
+      group.items[0];
+
+    if (first['Назва кроку']) {
+      return String(first['Назва кроку']).trim();
+    }
+
+    if (first['Заголовок']) {
+      return String(first['Заголовок']).trim();
+    }
+
+  }
+
+  return 'Крок ' +
+    String(
+      group.step || ''
+    );
+}
+
+
+// =====================================================
+// YOUTUBE
+// =====================================================
+
+function getYouTubeId(url) {
+
+  if (!url) {
+    return '';
+  }
+
+  const text =
+    String(url).trim();
+
+  let match =
+    text.match(
+      /[?&]v=([a-zA-Z0-9_-]{6,})/
+    );
+
+  if (match) {
+    return match[1];
+  }
+
+  match =
+    text.match(
+      /youtu\.be\/([a-zA-Z0-9_-]{6,})/
+    );
+
+  if (match) {
+    return match[1];
+  }
+
+  match =
+    text.match(
+      /youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/
+    );
+
+  if (match) {
+    return match[1];
+  }
+
+  return '';
+}
+
+
+// =====================================================
+// ВІДЕО
+// =====================================================
+
+function createVideo(item) {
+
+  const videoUrl =
+    String(
+      item['Відео'] || ''
+    ).trim();
+
+  if (!videoUrl) {
+    return null;
+  }
+
+  const videoId =
+    getYouTubeId(
+      videoUrl
+    );
+
+  if (!videoId) {
+    return null;
+  }
+
+  const container =
+    document.createElement(
+      'div'
+    );
+
+  container.className =
+    'video-container';
+
+  const title =
+    document.createElement(
+      'div'
+    );
+
+  title.className =
+    'video-title';
+
+  title.textContent =
+    '🎬 Навчальне відео';
+
+  container.appendChild(title);
+
+
+  const wrapper =
+    document.createElement(
+      'div'
+    );
+
+  wrapper.className =
+    'video-wrapper';
+
+
+  const iframe =
+    document.createElement(
+      'iframe'
+    );
+
+  iframe.src =
+    'https://www.youtube-nocookie.com/embed/' +
+    encodeURIComponent(
+      videoId
+    );
+
+  iframe.title =
+    item['Заголовок'] ||
+    'Навчальне відео';
+
+  iframe.setAttribute(
+    'allow',
+    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+  );
+
+  iframe.setAttribute(
+    'allowfullscreen',
+    ''
+  );
+
+  iframe.loading =
+    'lazy';
+
+  wrapper.appendChild(
+    iframe
+  );
+
+  container.appendChild(
+    wrapper
+  );
+
+  return container;
+}
+
+
+// =====================================================
+// ФОТО
+// =====================================================
+
+function createPhoto(item) {
+
+  const raw = String(item['Фото'] || '').trim();
+
+  // Локальні фото з репозиторію. Кілька фото розділяються символом |.
+  if (!raw || /^https?:\/\//i.test(raw)) {
+    return null;
+  }
+
+  const paths = raw
+    .split('|')
+    .map(function(value) { return value.trim(); })
+    .filter(Boolean);
+
+  if (!paths.length) return null;
+
+  const container = document.createElement('div');
+  container.className = 'photo-container';
+
+  paths.forEach(function(src) {
+
+    const image = document.createElement('img');
+
+    image.src = src;
+    image.alt = item['Заголовок'] || 'Фото';
+    image.loading = 'eager';
+
+    image.addEventListener(
+      'click',
+      function() {
+        openPhotoLightbox(image.src, image.alt);
+      }
+    );
+
+    image.addEventListener(
+      'error',
+      function() {
+        image.remove();
+      }
+    );
+
+    container.appendChild(image);
+
+  });
+
+  return container.children.length ? container : null;
+}
+
+// =====================================================
+// ПІДПУНКТ
+// =====================================================
+
+function createSubpoint(item) {
+
+  const card =
+    document.createElement(
+      'div'
+    );
+
+  card.className =
+    'subpoint-card';
+
+
+  if (
+    item['Підпункт']
+  ) {
+
+    const number =
+      document.createElement(
+        'div'
+      );
+
+    number.className =
+      'subpoint-number';
+
+    number.textContent =
+      item['Підпункт'];
+
+    card.appendChild(
+      number
+    );
+
+  }
+
+
+  if (
+    item['Заголовок']
+  ) {
+
+    const title =
+      document.createElement(
+        'div'
+      );
+
+    title.className =
+      'subpoint-title';
+
+    title.textContent =
+      item['Заголовок'];
+
+    card.appendChild(
+      title
+    );
+
+  }
+
+
+  if (
+    item['Текст']
+  ) {
+
+    const text =
+      document.createElement(
+        'div'
+      );
+
+    text.className =
+      'subpoint-text';
+
+    text.textContent =
+      item['Текст'];
+
+    card.appendChild(
+      text
+    );
+
+  }
+
+
+  const photo =
+    createPhoto(item);
+
+  if (photo) {
+    card.appendChild(photo);
+  }
+
+
+  const video =
+    createVideo(item);
+
+  if (video) {
+    card.appendChild(video);
+  }
+
+
+  return card;
+}
+
+
+// =====================================================
+// КРОК
+// =====================================================
+
+function createStepBlock(group) {
+
+  const block =
+    document.createElement(
+      'div'
+    );
+
+  block.className =
+    'step-block';
+
+
+  const header =
+    document.createElement(
+      'button'
+    );
+
+  header.type = 'button';
+
+  header.className =
+    'step-header';
+
+
+  const left =
+    document.createElement(
+      'div'
+    );
+
+  left.className =
+    'step-header-left';
+
+
+  const number =
+    document.createElement(
+      'div'
+    );
+
+  number.className =
+    'step-number';
+
+  number.textContent =
+    'КРОК ' +
+    group.step;
+
+
+  const title =
+    document.createElement(
+      'div'
+    );
+
+  title.className =
+    'step-title';
+
+  title.textContent =
+    getStepTitle(group);
+
+
+  left.appendChild(number);
+  left.appendChild(title);
+
+
+  const arrow =
+    document.createElement(
+      'div'
+    );
+
+  arrow.className =
+    'step-arrow';
+
+  arrow.textContent =
+    '▼';
+
+
+  header.appendChild(left);
+  header.appendChild(arrow);
+
+
+  const content =
+    document.createElement(
+      'div'
+    );
+
+  content.className =
+    'step-content';
+
+
+  group.items.forEach(
+    function(item) {
+
+      content.appendChild(
+        createSubpoint(item)
+      );
+
+    }
+  );
+
+
+  header.addEventListener(
+    'click',
+    function() {
+
+      block.classList.toggle(
+        'open'
+      );
+
+    }
+  );
+
+
+  block.appendChild(header);
+  block.appendChild(content);
+
+  return block;
+}
+
+
+// =====================================================
+// ЧЕК-ЛИСТ ПІДГОТОВКИ ДО РОБОТИ
+// =====================================================
+
+const preparationChecklistItems = [
+  'Місце встановлення безпечне: рівна поверхня, достатня вентиляція та вільний вихід вихлопних газів.',
+  'Проведено зовнішній огляд: немає пошкоджень, витоків палива або оливи.',
+  'Рівень моторної оливи знаходиться в допустимих межах.',
+  'Палива достатньо для запланованої роботи.',
+  'Акумулятор підключений та має достатній заряд, якщо передбачений електростартер.',
+  'Кабелі, розетки та електричні з’єднання справні.',
+  'Навантаження відключене перед запуском.',
+  'Органи керування та автомати встановлені у правильне положення.'
+];
+
+function createPreparationChecklist(sectionName) {
+  // Чек-лист є локальною функцією index.html і НЕ залежить
+  // від наявності пунктів цього розділу в Google Таблиці.
+  const normalizedName = String(sectionName || '')
+    .toLowerCase()
+    .replace(/[^а-яіїєґa-z0-9]+/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (
+    !normalizedName.includes('підготов') &&
+    !normalizedName.includes('підгот')
+  ) {
+    return null;
+  }
+
+  const box = document.createElement('div');
+  box.className = 'checklist-box';
+  box.setAttribute('data-checklist-id', 'preparation');
+
+  const head = document.createElement('div');
+  head.className = 'checklist-head';
+
+  const headText = document.createElement('div');
+  headText.innerHTML = `
+    <h3 class="checklist-title">📝 Чек-лист перед запуском</h3>
+    <p class="checklist-note">Відмітьте кожен пункт після перевірки. Стан зберігається у цьому браузері.</p>
+  `;
+
+  const reset = document.createElement('button');
+  reset.type = 'button';
+  reset.className = 'checklist-reset';
+  reset.textContent = 'Скинути';
+  reset.addEventListener('click', function(event) {
+    event.stopPropagation();
+    preparationChecklistItems.forEach(function(_, index) {
+      localStorage.removeItem('generator_checklist_preparation_' + index);
+    });
+    renderPreparationChecklist(box);
+  });
+
+  head.appendChild(headText);
+  head.appendChild(reset);
+  box.appendChild(head);
+
+  const progressRow = document.createElement('div');
+  progressRow.className = 'checklist-progress-row';
+  progressRow.innerHTML = `
+    <span class="checklist-progress-text">0 / ${preparationChecklistItems.length} виконано</span>
+    <span class="checklist-percent">0%</span>
+  `;
+  box.appendChild(progressRow);
+
+  const track = document.createElement('div');
+  track.className = 'checklist-progress-track';
+  track.innerHTML = '<div class="checklist-progress-bar"></div>';
+  box.appendChild(track);
+
+  const itemsBox = document.createElement('div');
+  itemsBox.className = 'checklist-items';
+  box.appendChild(itemsBox);
+
+  const success = document.createElement('div');
+  success.className = 'checklist-success';
+  success.textContent = '✅ Усі пункти перевірені. Генератор готовий до переходу до процедури запуску.';
+  box.appendChild(success);
+
+  const next = document.createElement('button');
+  next.type = 'button';
+  next.className = 'checklist-next';
+  next.textContent = 'Перейти до запуску ▶';
+  next.addEventListener('click', function(event) {
+    event.stopPropagation();
+    const launch = allSections.find(function(section) {
+      return String(section['Назва'] || '').trim().toLowerCase() === 'запуск';
+    });
+    if (!launch) return;
+    loadContent(
+      launch['ID'],
+      launch['Назва'],
+      launch['Іконка'] || '▶️',
+      launch['Категорія'] || 'Інші матеріали',
+      ''
+    );
+  });
+  box.appendChild(next);
+
+  renderPreparationChecklist(box);
+  return box;
+}
+
+function renderPreparationChecklist(box) {
+  const itemsBox = box.querySelector('.checklist-items');
+  const progressText = box.querySelector('.checklist-progress-text');
+  const percentText = box.querySelector('.checklist-percent');
+  const progressBar = box.querySelector('.checklist-progress-bar');
+  const success = box.querySelector('.checklist-success');
+  const next = box.querySelector('.checklist-next');
+
+  if (!itemsBox) return;
+
+  itemsBox.innerHTML = '';
+  let completed = 0;
+
+  preparationChecklistItems.forEach(function(text, index) {
+    const key = 'generator_checklist_preparation_' + index;
+    const done = localStorage.getItem(key) === '1';
+    if (done) completed++;
+
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'checklist-item' + (done ? ' done' : '');
+
+    const check = document.createElement('span');
+    check.className = 'checklist-check';
+    check.textContent = done ? '✓' : '';
+    check.setAttribute('aria-hidden', 'true');
+
+    const label = document.createElement('span');
+    label.className = 'checklist-item-text';
+    label.textContent = text;
+
+    item.appendChild(check);
+    item.appendChild(label);
+
+    item.addEventListener('click', function() {
+      const currentDone = localStorage.getItem(key) === '1';
+      if (currentDone) {
+        localStorage.removeItem(key);
+      } else {
+        localStorage.setItem(key, '1');
+      }
+      renderPreparationChecklist(box);
+    });
+
+    itemsBox.appendChild(item);
+  });
+
+  const total = preparationChecklistItems.length;
+  const percent = Math.round((completed / total) * 100);
+
+  if (progressText) progressText.textContent = completed + ' / ' + total + ' виконано';
+  if (percentText) percentText.textContent = percent + '%';
+  if (progressBar) progressBar.style.width = percent + '%';
+  if (success) success.classList.toggle('show', completed === total);
+  if (next) next.classList.toggle('show', completed === total);
+}
+
+
+// =====================================================
+// КОНТЕНТ
+// =====================================================
+
+function loadContent(
+  sectionId,
+  sectionName,
+  sectionIcon,
+  categoryName,
+  targetStep
+) {
+  const dashboard = document.getElementById('dashboardView');
+  const testView = document.getElementById('testView');
+  if (dashboard) dashboard.classList.remove('active');
+  if (testView) testView.classList.remove('active');
+
+  const sections =
+    document.getElementById(
+      'sections'
+    );
+
+  const content =
+    document.getElementById(
+      'content'
+    );
+
+  const pageHeading =
+    document.getElementById(
+      'pageHeading'
+    );
+
+  sections.style.display =
+    'none';
+
+  const feedbackCard = document.getElementById('feedbackCard');
+  if (feedbackCard) feedbackCard.style.display = 'none';
+  const searchPanel = document.getElementById('searchPanel');
+  if (searchPanel) searchPanel.style.display = 'block';
+
+  pageHeading.style.display =
+    'none';
+
+  currentNavigation.categoryName = categoryName || '';
+  currentNavigation.sectionName = sectionName || '';
+  setBreadcrumb(
+    currentNavigation.categoryName,
+    currentNavigation.sectionName
+  );
+
+  content.innerHTML = `
+
+    <div class="message">
+
+      <div class="loading">
+
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+
+      </div>
+
+      <div style="margin-top:12px;">
+        Завантаження матеріалів...
+      </div>
+
+    </div>
+
+  `;
+
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(items) {
+
+        contentCache[String(sectionId)] = items || [];
+
+        content.innerHTML = '';
+
+
+        // НАЗАД
+
+        const back =
+          document.createElement(
+            'button'
+          );
+
+        back.type = 'button';
+
+        back.className =
+          'back-button';
+
+        back.textContent =
+          '← Назад до розділів';
+
+
+        back.addEventListener(
+          'click',
+          function() {
+
+            content.innerHTML = '';
+
+            showCategory(
+              categoryName,
+              allSections.filter(
+                function(section) {
+
+                  return (
+                    section['Категорія'] ===
+                    categoryName
+                  );
+
+                }
+              )
+            );
+
+          }
+        );
+
+
+        content.appendChild(
+          back
+        );
+
+
+        // НАЗВА
+
+        const titleBox =
+          document.createElement(
+            'div'
+          );
+
+        titleBox.className =
+          'selected-section-title';
+
+
+        const icon =
+          document.createElement(
+            'div'
+          );
+
+        icon.className =
+          'selected-section-icon';
+
+        icon.textContent =
+          sectionIcon ||
+          '🛡️';
+
+
+        const name =
+          document.createElement(
+            'div'
+          );
+
+        name.className =
+          'selected-section-name';
+
+        name.textContent =
+          sectionName ||
+          'Розділ';
+
+
+        titleBox.appendChild(icon);
+        titleBox.appendChild(name);
+
+        content.appendChild(
+          titleBox
+        );
+
+        // ЧЕК-ЛИСТ: показуємо лише в розділі «Підготовка до роботи»
+        const checklist = createPreparationChecklist(sectionName);
+        if (checklist) {
+          content.appendChild(checklist);
+        }
+
+
+        if (
+          !items ||
+          items.length === 0
+        ) {
+
+          const empty =
+            document.createElement(
+              'div'
+            );
+
+          empty.className =
+            'message';
+
+          empty.innerHTML = `
+
+            <div class="message-icon">
+              📋
+            </div>
+
+            У цьому розділі немає
+            активних матеріалів.
+
+          `;
+
+          content.appendChild(
+            empty
+          );
+
+          return;
+        }
+
+
+        const groups =
+          groupBySteps(
+            items
+          );
+
+
+        groups.forEach(
+          function(group) {
+
+            const block =
+              createStepBlock(group);
+
+            if (
+              targetStep &&
+              String(group.step) === String(targetStep)
+            ) {
+              block.classList.add('open');
+            }
+
+            content.appendChild(block);
+
+          }
+        );
+
+        if (targetStep) {
+          setTimeout(function() {
+
+            const blocks =
+              Array.from(
+                content.querySelectorAll(
+                  '.step-block'
+                )
+              );
+
+            const targetBlock =
+              blocks.find(function(block) {
+
+                const number =
+                  block.querySelector(
+                    '.step-number'
+                  );
+
+                return number &&
+                  number.textContent
+                    .replace('КРОК','')
+                    .trim() ===
+                  String(targetStep);
+
+              });
+
+            if (targetBlock) {
+              targetBlock.scrollIntoView({
+                behavior:'smooth',
+                block:'start'
+              });
+            }
+
+          },100);
+        }
+
+      }
+    )
+
+    .withFailureHandler(
+      function(error) {
+
+        content.innerHTML = `
+
+          <div class="message error">
+
+            <strong>
+              Помилка завантаження контенту
+            </strong>
+
+            <br><br>
+
+            ${escapeHtml(
+              error &&
+              error.message
+                ? error.message
+                : 'Невідома помилка.'
+            )}
+
+          </div>
+
+        `;
+
+      }
+    )
+
+    .getContent(
+      sectionId
+    );
+
+}
+
+
+
+
+// =====================================================
+// ЗБІЛЬШЕННЯ ФОТО МЕТОДИЧКИ
+// =====================================================
+
+let photoScale = 1;
+let photoX = 0;
+let photoY = 0;
+let photoStartX = 0;
+let photoStartY = 0;
+let photoStartScale = 1;
+let photoDragging = false;
+let photoLastDistance = 0;
+let photoMoved = false;
+
+function getPhotoLightboxElements() {
+  return {
+    box: document.getElementById('photoLightbox'),
+    image: document.getElementById('photoLightboxImage'),
+    close: document.getElementById('photoLightboxClose')
+  };
+}
+
+function applyPhotoTransform() {
+  const image = document.getElementById('photoLightboxImage');
+
+  if (!image) {
+    return;
+  }
+
+  image.style.transform =
+    'translate3d(' + photoX + 'px, ' + photoY + 'px, 0) scale(' + photoScale + ')';
+}
+
+function resetPhotoZoom() {
+  photoScale = 1;
+  photoX = 0;
+  photoY = 0;
+  photoStartX = 0;
+  photoStartY = 0;
+  photoStartScale = 1;
+  photoDragging = false;
+  photoLastDistance = 0;
+  photoMoved = false;
+  applyPhotoTransform();
+}
+
+function openPhotoLightbox(src, alt) {
+  const elements = getPhotoLightboxElements();
+
+  if (!elements.box || !elements.image) {
+    return;
+  }
+
+  elements.image.src = src;
+  elements.image.alt = alt || 'Фото';
+  elements.box.classList.add('open');
+  elements.box.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('photo-lightbox-open');
+
+  resetPhotoZoom();
+}
+
+function closePhotoLightbox() {
+  const elements = getPhotoLightboxElements();
+
+  if (!elements.box || !elements.image) {
+    return;
+  }
+
+  elements.box.classList.remove('open');
+  elements.box.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('photo-lightbox-open');
+  elements.image.src = '';
+  resetPhotoZoom();
+}
+
+function photoDistance(touch1, touch2) {
+  const dx = touch1.clientX - touch2.clientX;
+  const dy = touch1.clientY - touch2.clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function photoMidpoint(touch1, touch2) {
+  return {
+    x: (touch1.clientX + touch2.clientX) / 2,
+    y: (touch1.clientY + touch2.clientY) / 2
+  };
+}
+
+function setupPhotoLightbox() {
+  const elements = getPhotoLightboxElements();
+
+  if (!elements.box || !elements.image || !elements.close) {
+    return;
+  }
+
+  elements.close.addEventListener(
+    'click',
+    function(event) {
+      event.stopPropagation();
+      closePhotoLightbox();
+    }
+  );
+
+  elements.box.addEventListener(
+    'click',
+    function(event) {
+      if (event.target === elements.box) {
+        closePhotoLightbox();
+      }
+    }
+  );
+
+  elements.image.addEventListener(
+    'click',
+    function(event) {
+      event.stopPropagation();
+
+      if (photoMoved) {
+        photoMoved = false;
+        return;
+      }
+
+      if (photoScale > 1) {
+        resetPhotoZoom();
+      }
+    }
+  );
+
+  elements.image.addEventListener(
+    'wheel',
+    function(event) {
+      event.preventDefault();
+
+      const direction = event.deltaY < 0 ? 1 : -1;
+      photoScale = Math.min(5, Math.max(1, photoScale + direction * 0.2));
+
+      if (photoScale === 1) {
+        photoX = 0;
+        photoY = 0;
+      }
+
+      applyPhotoTransform();
+    },
+    { passive:false }
+  );
+
+  elements.image.addEventListener(
+    'mousedown',
+    function(event) {
+      if (event.button !== 0 || photoScale <= 1) {
+        return;
+      }
+
+      photoDragging = true;
+      photoMoved = false;
+      photoStartX = event.clientX - photoX;
+      photoStartY = event.clientY - photoY;
+      elements.image.classList.add('dragging');
+      event.preventDefault();
+    }
+  );
+
+  window.addEventListener(
+    'mousemove',
+    function(event) {
+      if (!photoDragging) {
+        return;
+      }
+
+      photoX = event.clientX - photoStartX;
+      photoY = event.clientY - photoStartY;
+      photoMoved = true;
+      applyPhotoTransform();
+    }
+  );
+
+  window.addEventListener(
+    'mouseup',
+    function() {
+      photoDragging = false;
+      elements.image.classList.remove('dragging');
+    }
+  );
+
+  elements.image.addEventListener(
+    'touchstart',
+    function(event) {
+      if (event.touches.length === 2) {
+        photoLastDistance = photoDistance(
+          event.touches[0],
+          event.touches[1]
+        );
+        photoStartScale = photoScale;
+        photoMoved = false;
+        event.preventDefault();
+        return;
+      }
+
+      if (event.touches.length === 1 && photoScale > 1) {
+        photoDragging = true;
+        photoMoved = false;
+        photoStartX = event.touches[0].clientX - photoX;
+        photoStartY = event.touches[0].clientY - photoY;
+        event.preventDefault();
+      }
+    },
+    { passive:false }
+  );
+
+  elements.image.addEventListener(
+    'touchmove',
+    function(event) {
+      if (event.touches.length === 2) {
+        const distance = photoDistance(
+          event.touches[0],
+          event.touches[1]
+        );
+
+        if (photoLastDistance > 0) {
+          photoScale = Math.min(5, Math.max(1, photoStartScale * (distance / photoLastDistance)));
+
+          if (photoScale === 1) {
+            photoX = 0;
+            photoY = 0;
+          }
+
+          applyPhotoTransform();
+          photoMoved = true;
+        }
+
+        event.preventDefault();
+        return;
+      }
+
+      if (event.touches.length === 1 && photoDragging && photoScale > 1) {
+        photoX = event.touches[0].clientX - photoStartX;
+        photoY = event.touches[0].clientY - photoStartY;
+        photoMoved = true;
+        applyPhotoTransform();
+        event.preventDefault();
+      }
+    },
+    { passive:false }
+  );
+
+  elements.image.addEventListener(
+    'touchend',
+    function(event) {
+      if (event.touches.length < 2) {
+        photoLastDistance = 0;
+      }
+
+      if (event.touches.length === 0) {
+        photoDragging = false;
+      }
+    },
+    { passive:true }
+  );
+
+  document.addEventListener(
+    'keydown',
+    function(event) {
+      const isOpen = elements.box.classList.contains('open');
+
+      if (isOpen && event.key === 'Escape') {
+        closePhotoLightbox();
+      }
+    }
+  );
+}
+
+
+
+// =====================================================
+// ЗВОРОТНИЙ ЗВ'ЯЗОК
+// =====================================================
+
+(function setupFeedback(){
+  const card = document.getElementById('feedbackCard');
+  const overlay = document.getElementById('feedbackOverlay');
+  const close = document.getElementById('feedbackClose');
+  if (!card || !overlay || !close) return;
+
+  const email = 'vladhrechin@gmail.com';
+  const templates = {
+    idea: {
+      subject: '[Ідея] Пропозиція щодо покращення додатку «Підтримка Поруч»',
+      body: 'Добрий день!\n\nМаю пропозицію щодо покращення додатку «Підтримка Поруч».\n\nСуть пропозиції:\n(опишіть свою ідею тут)\n\nЧому це буде корисно:\n(поясніть переваги для користувачів)\n\nДодаткова інформація (за потреби):\n(будь-які деталі, скріншоти тощо)\n\nДякую за вашу роботу!\nРазом робимо корисний продукт для наших колег.\n\nЗ повагою,\n(ваше ім’я або підрозділ)'
+    },
+    info: {
+      subject: '[Інформація] Пропозиція щодо додавання нового матеріалу',
+      body: 'Добрий день!\n\nХочу запропонувати додати до «Підтримка Поруч» нову інформацію.\n\nЩо саме пропоную додати:\n(опишіть інформацію)\n\nДжерело або додаткові матеріали:\n(за потреби)\n\nДякую!\n\nЗ повагою,\n(ваше ім’я або підрозділ)'
+    },
+    error: {
+      subject: '[Помилка] Повідомлення про неточність у додатку «Підтримка Поруч»',
+      body: 'Добрий день!\n\nПовідомляю про помилку або неточність у додатку «Підтримка Поруч».\n\nДе саме виявлено:\n(розділ / матеріал)\n\nУ чому проблема:\n(опишіть помилку)\n\nЯк має бути:\n(за можливості)\n\nДодаткова інформація / скріншот:\n(за потреби)\n\nЗ повагою,\n(ваше ім’я або підрозділ)'
+    },
+    other: {
+      subject: '[Інше] Питання / пропозиція щодо додатку «Підтримка Поруч»',
+      body: 'Добрий день!\n\nМаю питання або пропозицію щодо додатку «Підтримка Поруч».\n\nТекст звернення:\n(напишіть своє питання або пропозицію тут)\n\nДодаткова інформація (за потреби):\n(будь-які деталі, скріншоти тощо)\n\nДякую!\n\nЗ повагою,\n(ваше ім’я або підрозділ)'
+    }
+  };
+
+  function openFeedback(){
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeFeedback(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  function openMail(type){
+    const item = templates[type] || templates.other;
+    const url = 'mailto:' + email + '?subject=' + encodeURIComponent(item.subject) + '&body=' + encodeURIComponent(item.body);
+    window.location.href = url;
+  }
+
+  card.addEventListener('click', openFeedback);
+  card.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFeedback(); }
+  });
+  close.addEventListener('click', closeFeedback);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) closeFeedback(); });
+  overlay.querySelectorAll('[data-feedback-type]').forEach(function(button){
+    button.addEventListener('click', function(){ openMail(button.getAttribute('data-feedback-type')); });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeFeedback();
+  });
+})();
+
+// =====================================================
+// СТАРТ
+// =====================================================
+
+window.addEventListener(
+  'load',
+  function() {
+
+    setupPhotoLightbox();
+    setupSearch();
+    setupDashboard();
+    const logout=document.getElementById('logoutButton');
+    if(logout) logout.addEventListener('click',function(){PIDTRYMKA_AUTH.signOut();location.replace('index.html');});
+    setBreadcrumb('', '');
+
+    loadSections();
+
+  }
+);
+
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+      registration.update();
+    }).catch(function (error) {
+      console.error('Не вдалося увімкнути офлайн-режим:', error);
+    });
+  });
+}
+</script>
+</body>
+</html>
+
